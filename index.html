@@ -1,0 +1,1519 @@
+<html lang="ja"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikhail Pavlov — ゲームエンジニア ポートフォリオ</title>
+    <style>
+        /* ============================
+           CSS リセット & 変数
+        ============================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --green-dark: #1b4332;
+            --green-mid: #2d6a4f;
+            --green-light: #40916c;
+            --green-pale: #d8f3dc;
+            --yellow: #f4d35e;
+            --brown: #7b5e3d;
+            --cream: #fefae0;
+            --white: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-mid: #3d405b;
+            --text-light: #6b6b8a;
+            --radius: 12px;
+            --shadow: 0 4px 24px rgba(0,0,0,.10);
+            --transition: .25s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--green-mid);
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        /* ============================
+           ナビゲーション
+        ============================ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--green-dark);
+            padding: .9rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,.3);
+        }
+
+            nav .logo {
+                color: var(--yellow);
+                font-size: 1.1rem;
+                font-weight: 700;
+                letter-spacing: .05em;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 1.6rem;
+            }
+
+                nav ul li a {
+                    color: var(--green-pale);
+                    font-size: .9rem;
+                    transition: color var(--transition);
+                }
+
+                    nav ul li a:hover {
+                        color: var(--yellow);
+                        text-decoration: none;
+                    }
+
+        /* ============================
+           ヒーローセクション
+        ============================ */
+        .hero {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero::before {
+                content: "🌾";
+                position: absolute;
+                font-size: 14rem;
+                opacity: .06;
+                top: -2rem;
+                right: -2rem;
+                user-select: none;
+            }
+
+        .hero-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid var(--yellow);
+            margin: 0 auto 1.4rem;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: .4rem;
+            letter-spacing: .03em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+        }
+
+        .hero .tagline {
+            font-size: 1rem;
+            opacity: .85;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: .65rem 1.6rem;
+            border-radius: 50px;
+            font-size: .9rem;
+            font-weight: 600;
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 18px rgba(0,0,0,.2);
+                text-decoration: none;
+            }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--green-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--green-pale);
+            color: var(--green-pale);
+        }
+
+        /* ============================
+           セクション共通
+        ============================ */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-align: center;
+            margin-bottom: .4rem;
+        }
+
+            .section-title span {
+                display: block;
+                font-size: .85rem;
+                font-weight: 400;
+                color: var(--text-light);
+                letter-spacing: .12em;
+                text-transform: uppercase;
+                margin-bottom: .3rem;
+            }
+
+        .divider {
+            width: 50px;
+            height: 4px;
+            background: var(--yellow);
+            border-radius: 2px;
+            margin: .8rem auto 3rem;
+        }
+
+        /* ============================
+           自己紹介
+        ============================ */
+        #about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-mid);
+        }
+
+        .about-facts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .fact-card {
+            background: var(--green-pale);
+            border-left: 4px solid var(--green-mid);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: .9rem 1.2rem;
+        }
+
+            .fact-card .label {
+                font-size: .75rem;
+                color: var(--green-mid);
+                font-weight: 700;
+                letter-spacing: .08em;
+                text-transform: uppercase;
+            }
+
+            .fact-card .value {
+                font-weight: 600;
+                color: var(--text-dark);
+            }
+
+        /* ============================
+           スキル
+        ============================ */
+        #skills {
+            background: var(--cream);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.6rem;
+            box-shadow: var(--shadow);
+        }
+
+            .skill-category h3 {
+                font-size: 1rem;
+                color: var(--green-dark);
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+            }
+
+        .skill-list {
+            list-style: none;
+        }
+
+            .skill-list li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: .4rem 0;
+                border-bottom: 1px solid var(--green-pale);
+                font-size: .9rem;
+                color: var(--text-mid);
+            }
+
+                .skill-list li:last-child {
+                    border-bottom: none;
+                }
+
+        .skill-bar {
+            width: 100px;
+            height: 6px;
+            background: var(--green-pale);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-mid), var(--green-light));
+            border-radius: 3px;
+        }
+
+        /* ============================
+           プロジェクト
+        ============================ */
+        #project {
+            background: var(--white);
+        }
+
+        .project-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+            color: var(--white);
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+            .project-header h3 {
+                font-size: 1.5rem;
+                margin-bottom: .4rem;
+            }
+
+            .project-header .project-type {
+                font-size: .8rem;
+                background: var(--yellow);
+                color: var(--green-dark);
+                padding: .2rem .8rem;
+                border-radius: 50px;
+                font-weight: 700;
+            }
+
+            .project-header .tags {
+                display: flex;
+                gap: .5rem;
+                flex-wrap: wrap;
+                margin-top: .8rem;
+            }
+
+        .tag {
+            background: rgba(255,255,255,.15);
+            color: var(--green-pale);
+            font-size: .75rem;
+            padding: .2rem .7rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,.2);
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-desc {
+            color: var(--text-mid);
+            margin-bottom: 1.6rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1rem 1.2rem;
+            border-left: 3px solid var(--green-light);
+        }
+
+            .feature-item h4 {
+                font-size: .9rem;
+                color: var(--green-dark);
+                margin-bottom: .3rem;
+            }
+
+            .feature-item p {
+                font-size: .82rem;
+                color: var(--text-light);
+            }
+
+        /* スクリーンショット */
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+            .screenshots img {
+                width: 100%;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                transition: transform var(--transition);
+            }
+
+                .screenshots img:hover {
+                    transform: scale(1.02);
+                }
+
+        /* アーキテクチャ図 */
+        .arch-box {
+            background: var(--green-dark);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-family: "Courier New", monospace;
+            color: var(--green-pale);
+            font-size: .85rem;
+            overflow-x: auto;
+        }
+
+            .arch-box .comment {
+                color: #7ee8a2;
+                opacity: .7;
+            }
+
+        /* パターン表 */
+        .pattern-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .88rem;
+        }
+
+            .pattern-table th {
+                background: var(--green-mid);
+                color: var(--white);
+                padding: .7rem 1rem;
+                text-align: left;
+            }
+
+            .pattern-table td {
+                padding: .7rem 1rem;
+                border-bottom: 1px solid var(--green-pale);
+                color: var(--text-mid);
+                vertical-align: top;
+            }
+
+            .pattern-table tr:nth-child(even) td {
+                background: var(--white);
+            }
+
+        code {
+            background: var(--green-pale);
+            color: var(--green-dark);
+            padding: .1rem .4rem;
+            border-radius: 4px;
+            font-size: .83em;
+        }
+
+        /* ============================
+           実績・成果
+        ============================ */
+        #achievements {
+            background: var(--cream);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+            .metric-card .num {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: var(--green-mid);
+            }
+
+            .metric-card .unit {
+                font-size: .8rem;
+                color: var(--text-light);
+            }
+
+            .metric-card p {
+                font-size: .85rem;
+                color: var(--text-mid);
+                margin-top: .4rem;
+            }
+
+        /* 学習ポイント */
+        .learning-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .learning-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.2rem 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+            .learning-item .icon {
+                font-size: 1.6rem;
+                flex-shrink: 0;
+            }
+
+            .learning-item h4 {
+                font-size: .9rem;
+                color: var(--green-dark);
+                margin-bottom: .3rem;
+            }
+
+            .learning-item p {
+                font-size: .82rem;
+                color: var(--text-light);
+            }
+
+        /* ============================
+           連絡先
+        ============================ */
+        #contact {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+            color: var(--white);
+            text-align: center;
+        }
+
+            #contact .section-title {
+                color: var(--yellow);
+            }
+
+                #contact .section-title span {
+                    color: rgba(255,255,255,.7);
+                }
+
+        .contact-text {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            opacity: .85;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.2);
+            color: var(--white);
+            padding: .7rem 1.4rem;
+            border-radius: 50px;
+            font-size: .9rem;
+            transition: background var(--transition);
+        }
+
+            .contact-link:hover {
+                background: rgba(255,255,255,.2);
+                text-decoration: none;
+            }
+
+        /* ============================
+           フッター
+        ============================ */
+        footer {
+            background: var(--green-dark);
+            color: var(--green-pale);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: .82rem;
+            opacity: .8;
+        }
+
+        /* ============================
+           チームバッジ
+        ============================ */
+        .team-badges {
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.4rem;
+        }
+
+        .team-badge {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 50px;
+            padding: .3rem .9rem;
+            font-size: .82rem;
+            color: var(--white);
+        }
+
+            .team-badge.highlight {
+                background: rgba(244,211,94,.2);
+                border-color: var(--yellow);
+                color: var(--yellow);
+                font-weight: 700;
+            }
+
+        .role-tag {
+            display: inline-block;
+            background: var(--yellow);
+            color: #1a1a2e;
+            font-size: .72rem;
+            font-weight: 700;
+            padding: .15rem .6rem;
+            border-radius: 50px;
+            margin-left: .3rem;
+            vertical-align: middle;
+        }
+
+        /* ============================
+           レスポンシブ
+        ============================ */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+
+
+
+    <!-- ========== ナビゲーション ========== -->
+    <nav>
+        <div class="logo"> Mikhail Pavlov <span style="font-size:.75rem; font-weight:400; opacity:.7;">ミハイル・パブロフ</span></div>
+        <ul>
+            <li><a href="#about">自己紹介</a></li>
+            <li><a href="#skills">スキル</a></li>
+            <li><a href="#project">プロジェクト</a></li>
+            <li><a href="#achievements">成果</a></li>
+            <li><a href="#contact">連絡先</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== ヒーロー ========== -->
+    <header class="hero">
+        <div class="hero-avatar">
+            <img alt="Mikhail Pavlov" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" src="MikhailPavlov_2_files/120414374.jpg">
+        </div>
+        <h1>Mikhail Pavlov<br><span style="font-size:1rem; font-weight:400; letter-spacing:.15em; color:var(--yellow); opacity:.9;">ミハイル パブロフ</span></h1>
+        <p class="subtitle">ゲームエンジニア / Unity &amp; C++ Developer</p>
+        <p class="tagline">
+            Unity・C# によるマルチプレイヤーゲームと、C++・DirectX 11 による独自エンジン開発の両方を手がけるゲームエンジニアです。<br>
+            ネットワーク同期・ECS・SQLデータ管理からグラフィックスプログラミングまで幅広く対応できます。
+        </p>
+        <div class="hero-links">
+            <a class="btn btn-primary" href="#project">プロジェクトを見る</a>
+            <a class="btn btn-outline" href="https://github.com/mikhailroug" target="_blank">GitHub</a>
+            <a class="btn btn-outline" href="#contact">連絡する</a>
+        </div>
+    </header>
+
+    <!-- ========== 自己紹介 ========== -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span>ABOUT ME</span>自己紹介
+            </h2>
+            <div class="divider"></div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        ゲーム開発に情熱を持つエンジニアです。
+                        <strong>Unity / C#</strong> によるマルチプレイヤーゲーム開発と、
+                        <strong>C++ / DirectX 11</strong> による独自レンダリングエンジン開発の両軸で
+                        実践的な経験を積んでいます。
+                    </p>
+                    <p>
+                        <strong>Mirror Networking</strong> を用いたサーバー権威型アーキテクチャを実践し、
+                        ネットワーク上でのインベントリ同期・プレイヤー生成・オブジェクト管理など
+                        オンラインゲームの核となる技術を習得しています。また <strong>Unity ECS (DOTS)</strong>
+                        を活用した高パフォーマンスな設計にも取り組んでいます。
+                    </p>
+                    <p>
+                        <strong>SQLデータベース</strong> を用いたゲームデータの永続化・管理も経験しており、
+                        依存性注入 (Zenject)・ScriptableObject・インターフェース設計を組み合わせた
+                        データドリブンなゲーム開発を実践しています。
+                    </p>
+                    <p>
+                        チームへの貢献を大切にし、読みやすいコード・明確なアーキテクチャ設計を
+                        常に意識しながら開発を行っています。
+                    </p>
+                </div>
+
+                <div class="about-facts">
+                    <div class="fact-card">
+                        <div class="label">専門分野</div>
+                        <div class="value">Unityマルチプレイヤーゲーム開発</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="label">所属</div>
+                        <div class="value">HAL東京 ゲームプログラミング科</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="label">主要言語</div>
+                        <div class="value">C# / C++ / SQL / .Net</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="label">ゲームエンジン・環境</div>
+                        <div class="value">Unity 6 (URP / ECS) / DirectX 11</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="label">得意な分野</div>
+                        <div class="value">ネットワーク同期 / グラフィックス / ECS設計 / DB管理</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="label">求めるポジション</div>
+                        <div class="value">Unityエンジニア / ゲームプログラマー</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== スキル ========== -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span>TECHNICAL SKILLS</span>技術スキル
+            </h2>
+            <div class="divider"></div>
+
+            <div class="skills-grid">
+
+                <div class="skill-category">
+                    <h3>🎮 ゲームエンジン・コアツール</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>Unity 6 (URP)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+                        </li>
+                        <li>
+                            <span>C#</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                        </li>
+                        <li>
+                            <span>Unity Input System</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                        <li>
+                            <span>Cinemachine</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>TextMesh Pro / uGUI</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🌐 ネットワーク・アーキテクチャ</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>Mirror Networking</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>NetworkBehaviour / SyncVar</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                        <li>
+                            <span>SyncList / Command / RPC</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                        <li>
+                            <span>サーバー権威型設計</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>Host/Client アーキテクチャ</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🏗️ 設計パターン・ライブラリ</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>Zenject (依存性注入)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>ScriptableObject設計</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                        </li>
+                        <li>
+                            <span>インターフェース設計</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                        <li>
+                            <span>Factory / Command パターン</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>データドリブン設計</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🗄️ データベース・データ管理</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>SQL (SELECT / JOIN / トランザクション)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                        </li>
+                        <li>
+                            <span>SQLite (ゲームデータ永続化)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                        </li>
+                        <li>
+                            <span>ScriptableObject DB設計</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                        </li>
+                        <li>
+                            <span>データ正規化・スキーマ設計</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>⚡ Unity ECS / DOTS</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>Entity Component System (ECS)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                        </li>
+                        <li>
+                            <span>ISystem / IJobEntity</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                        </li>
+                        <li>
+                            <span>Burst Compiler / Job System</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                        </li>
+                        <li>
+                            <span>データ指向設計 (DoD)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🖥️ C++ / グラフィックスプログラミング</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>C++ (モダンC++11/17)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>DirectX 11 / Direct3D</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                        </li>
+                        <li>
+                            <span>Assimp (3Dモデル読み込み)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                        </li>
+                        <li>
+                            <span>スキンドアニメーション / 衝突検出</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>⚙️ 開発ツール・その他</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>Git / GitHub</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                        <li>
+                            <span>Visual Studio / Rider</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                        </li>
+                        <li>
+                            <span>Unity Editor拡張</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                        </li>
+                        <li>
+                            <span>Physics (CharacterController / WheelCollider)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                        </li>
+                        <li>
+                            <span>Blender (3Dモデル基礎)</span>
+                            <div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== プロジェクト ========== -->
+    <section id="project">
+        <div class="container">
+            <h2 class="section-title">
+                <span>FEATURED PROJECTS</span>主要プロジェクト (3作品)
+            </h2>
+            <div class="divider"></div>
+
+            <!-- ===== 1. Make-a-Farm ===== -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <div class="project-type">個人開発 / ポートフォリオ</div>
+                        <h3>🌾 Make-a-Farm — マルチプレイヤー農場ゲーム</h3>
+                        <p style="opacity:.85; font-size:.9rem;">
+                            Unity 6 + Mirror Networking で実装した、リアルタイムマルチプレイヤー農場ゲームのプロトタイプ。
+                            サーバー権威型ネットワーク設計・依存性注入・インターフェース駆動設計を実践したフルスタック Unity プロジェクト。
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Unity 6</span>
+                            <span class="tag">C#</span>
+                            <span class="tag">Mirror</span>
+                            <span class="tag">Zenject</span>
+                            <span class="tag">Cinemachine</span>
+                            <span class="tag">URP</span>
+                            <span class="tag">New Input System</span>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary" href="https://github.com/mikhailroug/Make-a-Farm-Unity-Project" target="_blank">GitHub →</a>
+                </div>
+
+                <div class="project-body">
+
+                    <!-- デモ動画 -->
+                    <div style="margin-bottom:1.5rem;">
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow);">
+                            <a href="https://www.youtube.com/watch?v=trwps3u5K54" target="_blank" rel="noopener noreferrer" style="position:absolute; top:0; left:0; width:100%; height:100%; display:block;">
+                                <img src="MikhailPavlov_2_files/maxresdefault.jpg" alt="Make-a-Farm デモ動画" style="width:100%; height:100%; object-fit:cover; display:block;">
+                                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:70px; height:50px; background:rgba(27,67,50,0.9); border-radius:14px; display:flex; align-items:center; justify-content:center; border: 2px solid var(--yellow);">
+                                    <svg viewBox="0 0 24 24" style="width:28px; height:28px; fill:var(--yellow);"><path d="M8 5v14l11-7z"></path></svg>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- スクリーンショット -->
+                    <div class="screenshots">
+                        <img src="MikhailPavlov_2_files/597943950-34ff16b8-5f28-4ea2-88da-d515deb64e96.gif" alt="ゲームスクリーンショット 1" onerror="this.style.display='none'">
+                        <img src="MikhailPavlov_2_files/597430182-1919b6c8-896f-4ec1-bca1-e77a169cc2bb.gif" alt="ゲームスクリーンショット 2" onerror="this.style.display='none'">
+                    </div>
+
+                    <!-- プロジェクト概要 -->
+                    <p class="project-desc">
+                        本プロジェクトは複数プレイヤーが同一ワールドで農業・取引・乗り物操作を楽しめる農場ゲームです。
+                        ネットワーク越しにリアルタイムでゲーム状態を同期し、クライアント間の一貫性を保つ
+                        <strong>サーバー権威型アーキテクチャ</strong>を採用しています。
+                        農作物の成長タイマー・インベントリ・プレイヤー位置など全ての状態をサーバーが管理します。
+                    </p>
+
+                    <!-- 実装機能 -->
+                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">✅ 実装した主な機能</h4>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h4>🌐 マルチプレイヤーネットワーク</h4>
+                            <p>Mirror による Host/Client 方式。プレイヤーのスポーン・同期・切断処理を実装。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🌱 農業システム</h4>
+                            <p>種の設置→成長段階の進行→収穫までを完全にネットワーク同期。ゴーストプレビューで配置可否を視覚化。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🎒 ネットワーク同期インベントリ</h4>
+                            <p><code>SyncList&lt;InventorySlot&gt;</code> による9スロットインベントリ。アイテムスタック・消費・UI連動を実装。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🏪 ショップシステム</h4>
+                            <p>Zenject の Factory パターンでショップカードを動的生成。インタラクション起動 UI を実装。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🚗 乗り物システム</h4>
+                            <p>WheelCollider を用いた車両物理。乗降・Cinemachine カメラ切換・ハンドル操作を実装。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🖱️ インタラクションシステム</h4>
+                            <p>レイキャスト + <code>IInteractable</code> インターフェースによるドア・農作物・ショップ・乗り物の統一操作。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>📦 アイテムデータベース</h4>
+                            <p>ScriptableObject でアイテム定義。Zenject でシーンに注入し ID 検索可能なデータドリブン設計。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🚀 描画最適化 (Draw Call削減)</h4>
+                            <p>GPUインスタンシング・Static Batching・動的バッチングを適用。<strong>Draw Call を 286 → 88 に約 70% 削減</strong>し、FPS を 111 → 135 以上に改善。</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🎮 プレイヤーコントローラ</h4>
+                            <p>カメラ相対移動・スプリント・ジャンプ・アニメーション連動を New Input System で実装。</p>
+                        </div>
+                    </div>
+
+                    <!-- ネットワークアーキテクチャ -->
+                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">🏗️ ネットワークアーキテクチャ</h4>
+                    <div class="arch-box">
+<pre><span class="comment">// サーバー権威型フロー</span>
+
+クライアント入力 (WASD / E キー / LMB)
+    │
+    ▼
+[Command] ─────────────────► サーバー処理・バリデーション
+                                      │
+                         ┌────────────┴────────────┐
+                         ▼                         ▼
+                   SyncVar / SyncList         NetworkServer.Spawn()
+                   （状態同期）                （オブジェクト生成）
+                         │                         │
+                         └────────────┬────────────┘
+                                      ▼
+                              全クライアントへ自動配信
+                                      │
+                                      ▼
+                             クライアント UI 更新・演出再生</pre>
+                    </div>
+
+                    <!-- 設計パターン -->
+                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">⚡ 採用した設計パターン</h4>
+                    <table class="pattern-table">
+                        <thead>
+                            <tr>
+                                <th>パターン</th>
+                                <th>適用箇所</th>
+                                <th>目的</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>NetworkBehaviour 継承</strong></td>
+                                <td><code>Plant</code>, <code>Inventory</code>, <code>Player</code></td>
+                                <td>Mirror による自動状態同期の基盤</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Command パターン</strong></td>
+                                <td>全クライアント→サーバー操作</td>
+                                <td>サーバー権威型の一貫したアクション処理</td>
+                            </tr>
+                            <tr>
+                                <td><strong>インターフェース設計</strong></td>
+                                <td><code>IInteractable</code>, <code>IHarvestable</code></td>
+                                <td>インタラクション対象の疎結合化</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Factory パターン (DI)</strong></td>
+                                <td><code>ShopCardUi.Factory</code></td>
+                                <td>ショップカードの実行時動的生成</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ScriptableObject データ</strong></td>
+                                <td><code>ItemConfig</code> 継承ツリー</td>
+                                <td>コード変更なしでアイテム追加可能なデータ設計</td>
+                            </tr>
+                            <tr>
+                                <td><strong>描画最適化</strong></td>
+                                <td>GPUインスタンシング / Static Batching</td>
+                                <td>Draw Call 286→88（約70%削減）、FPS 111→135以上</td>
+                            </tr>
+                            <tr>
+                                <td><strong>依存性注入 (Zenject)</strong></td>
+                                <td><code>GameplaySceneInstaller</code></td>
+                                <td>サービスロケーターを排除した疎結合設計</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <!-- プロジェクト構成 -->
+                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">📁 プロジェクト構成 (カスタムスクリプト)</h4>
+                    <div class="arch-box">
+<pre>Assets/Scripts/
+├── Gameplay/
+│   ├── Player/          <span class="comment"># 入力・移動・インタラクション・設置・インベントリUI (8スクリプト)</span>
+│   ├── FarmScripts/     <span class="comment"># 農作物成長・収穫ロジック・ゴースト検証 (6スクリプト)</span>
+│   ├── Inventory/       <span class="comment"># SyncListインベントリ・スロット・UI (4スクリプト)</span>
+│   ├── Items/           <span class="comment"># ItemConfig抽象基底・種・食料・DBビルダー (5スクリプト)</span>
+│   └── Zenject/         <span class="comment"># DIコンフィグ・シーンインストーラー (2スクリプト)</span>
+└── Menu/                <span class="comment"># メインメニュー・ローディング画面 (2スクリプト)</span>
+
+Assets/Data/             <span class="comment"># ScriptableObject資産 (種2種・食料3種・DB)</span>
+Assets/Scenes/           <span class="comment"># MainMenu.unity / GameScene.unity</span>
+Assets/Prefab/           <span class="comment"># Player・Plant・UI prefab群</span></pre>
+                    </div>
+
+                    <!-- 今後の機能 -->
+                    <h4 style="margin-bottom:.8rem; color:var(--green-dark);">🚧 今後実装予定の機能</h4>
+                    <ul style="color:var(--text-mid); padding-left:1.4rem; font-size:.9rem; line-height:2;">
+                        <li>ゲーム内通貨・ショップ経済システム</li>
+                        <li>プレイヤーデータの保存・読み込み (セーブ機能)</li>
+                        <li>効果音・環境音の実装</li>
+                        <li>水やり・肥料・作物の健康状態システム</li>
+                        <li>プレイヤー間取引・チャット機能</li>
+                    </ul>
+
+                </div>
+            </div><!-- /project-card Make-a-Farm -->
+            <!-- ===== 2. Tetris Shooter (Game Jam) ===== -->
+            <div class="project-card" style="border-top: 4px solid #6c3fb5;">
+                <div class="project-header" style="background: linear-gradient(135deg, #2d1b5e, #6c3fb5);">
+                    <div>
+                        <div class="project-type" style="background:#b39ddb; color:#1a1a2e;">🏆 チーム開発 / ゲームジャム</div>
+                        <h3>🎮 Tetris Shooter — ハイブリッドパズルシューター</h3>
+                        <p style="opacity:.85; font-size:.9rem;">
+                            ゲームジャムで日本人メンバーと共同開発した、テトリスとタレットシューティングを融合させたハイブリッドゲーム。
+                            チーム唯一の Unity 経験者として<strong>ビジュアル・エフェクト・シーン構成全般</strong>を担当。
+                        </p>
+
+                        <!-- チームメンバー -->
+                        <div class="team-badges">
+                            <div class="team-badge highlight">👤 Mikhail  <span class="role-tag">Unity / ビジュアル担当</span></div>
+                        </div>
+
+                        <div class="tags">
+                            <span class="tag">Unity 6</span>
+                            <span class="tag">C#</span>
+                            <span class="tag">URP</span>
+                            <span class="tag">Cartoon FX</span>
+                            <span class="tag">TextMesh Pro</span>
+                            <span class="tag">チーム開発</span>
+                        </div>
+                    </div>
+                    <a class="btn" style="background:#b39ddb; color:#1a1a2e; font-weight:700;" href="https://github.com/MikhailRouG/Tetris-Shooter" target="_blank">GitHub →</a>
+                </div>
+                <div class="screenshots">
+                    <img alt="ゲームスクリーンショット 1" onerror="this.style.display='none'" src="MikhailPavlov_2_files/600486647-3062ac83-c549-4910-81bc-64f94da976cf.gif">
+                </div>
+                <div class="project-body">
+
+                    <!-- プロジェクト概要 -->
+                    <p class="project-desc">
+                        落下するブロックを砲台（タレット）で撃ち抜いてラインを消す、テトリスとシューティングを融合した新感覚パズルゲームです。
+                        ゲームジャム形式で短期間に日本人チームメンバーと協力して開発しました。
+                        チーム内で唯一 Unity を扱えるメンバーとして、<strong>シーン構成・エフェクト・UI アニメーション・ビジュアル全般</strong>を主導しました。
+                    </p>
+
+                    <!-- チームにおける役割 -->
+                    <div style="background:linear-gradient(135deg,#ede7f6,#f3e5f5); border-radius:var(--radius); padding:1.4rem 1.6rem; margin-bottom:2rem; border-left:4px solid #6c3fb5;">
+                        <h4 style="color:#4527a0; margin-bottom:.8rem;">🙋 チームにおける自分の役割</h4>
+                        <ul style="color:var(--text-mid); padding-left:1.2rem; font-size:.9rem; line-height:2.1;">
+                            <li><strong>Unity エンジン全般の管理</strong> — チーム唯一の Unity 経験者として環境構築・プロジェクト設定・Git 連携を担当</li>
+                            <li><strong>ビジュアルエフェクト実装</strong> — Cartoon FX Remaster を活用した爆発・ライン消去・ヒットエフェクトを実装</li>
+                            <li><strong>UIアニメーション</strong> — タイトル画面アニメーション・ボタン演出・スコア表示 UI を構築</li>
+                            <li><strong>シーン・カメラ構成</strong> — 3D 雲・スカイボックス・ライティングなど世界観を作るビジュアル設計</li>
+                            <li><strong>チームサポート</strong> — 他メンバーのコードを Unity に統合し、動作確認・バグ修正を支援</li>
+                        </ul>
+                    </div>
+
+                    <!-- 実装機能 -->
+                    <h4 style="margin-bottom:1rem; color:#4527a0;">✅ ゲームの主な機能</h4>
+                    <div class="feature-grid">
+                        <div class="feature-item" style="border-left-color:#7e57c2;">
+                            <h4>🎯 タレット操作システム</h4>
+                            <p>マウスで砲台を回転・照準。左クリックで弾を発射。ブロックに命中させてラインを消去。</p>
+                        </div>
+                        <div class="feature-item" style="border-left-color:#7e57c2;">
+                            <h4>🧱 テトリス式ブロック管理</h4>
+                            <p>ラインが揃うと消去してスコア加算。ブロックが危険ゾーンに到達するとゲームオーバー。</p>
+                        </div>
+                        <div class="feature-item" style="border-left-color:#7e57c2;">
+                            <h4>🎁 スペシャルブロック</h4>
+                            <p>「プレゼントブロック」を破壊するとボーナスアイテムを獲得。ゲームプレイに変化を加える。</p>
+                        </div>
+                        <div class="feature-item" style="border-left-color:#7e57c2;">
+                            <h4>⚡ パワーアップシステム</h4>
+                            <p>弾のダメージ・速度・特性を変えるアイテムを収集。リロール機能でアイテム再選択も可能。</p>
+                        </div>
+                        <div class="feature-item" style="border-left-color:#7e57c2;">
+                            <h4>✨ ビジュアルエフェクト</h4>
+                            <p>Cartoon FX による爆発・ライン消去エフェクト、タイトルアニメーション、3D 雲背景を実装。</p>
+                        </div>
+                        <div class="feature-item" style="border-left-color:#7e57c2;">
+                            <h4>📈 ステージ進行</h4>
+                            <p>ステージが進むにつれてブロックの落下速度・密度が増加。徐々に難易度が上がる設計。</p>
+                        </div>
+                    </div>
+
+                    <!-- チーム開発で学んだこと -->
+                    <h4 style="margin-bottom:1rem; color:#4527a0;">💬 チーム開発から得た学び</h4>
+                    <div class="arch-box" style="background:#1a0a3d;">
+                        <pre><span class="comment">// ゲームジャム チーム構成</span>
+
+メンバー: Mikhail (自分) + akitakann + Arai-Eito +Mizuno  <span class="comment">← 日本人チームと協働</span>
+
+役割分担:
+  Mikhail     ─── Unity 環境 / ビジュアル / エフェクト /  ゲームロジック
+  akitakann   ─── ゲームロジック / UI 
+  Arai-Eito   ─── ゲームロジック 
+  Mizuno      ─── Audio
+
+コミュニケーション:
+  ✓ Git / GitHub による非同期コラボレーション (33 コミット)
+  ✓ プルリクエストでコードレビュー・統合を実施
+  ✓ 短期間での機能分担と並行開発</pre>
+                    </div>
+
+                </div>
+            </div><!-- /project-card Tetris Shooter -->
+            <!-- ===== 3. Slime Invasion 3D ===== -->
+            <div class="project-card" style="border-top: 4px solid #c0392b;">
+                <div class="project-header" style="background: linear-gradient(135deg, #4a0e0e, #922b21);">
+                    <div>
+                        <div class="project-type" style="background:#ff6b6b; color:#fff;">個人開発 / C++エンジン</div>
+                        <h3>👾 Slime Invasion 3D — 3Dシューティングゲーム</h3>
+                        <p style="opacity:.85; font-size:.9rem;">
+                            Unity を使わず <strong>C++ と DirectX 11 のみ</strong> でゼロから実装した3Dシューティングゲーム。
+                            レンダリングパイプライン・物理・アニメーション・サウンドをすべて独自実装し、
+                            グラフィックスプログラミングの基礎を習得したプロジェクト。
+                        </p>
+                        <div class="tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">DirectX 11</span>
+                            <span class="tag">HLSL</span>
+                            <span class="tag">Assimp</span>
+                            <span class="tag">Visual Studio</span>
+                            <span class="tag">DirectXTex</span>
+                        </div>
+                    </div>
+                    <a class="btn" style="background:#ff6b6b; color:#fff;" href="https://github.com/MikhailRouG/Slime-Invasion-3D-VS" target="_blank">GitHub →</a>
+                </div>
+
+            </div>
+            <div class="screenshots">
+                <img src="MikhailPavlov_2_files/597951268-97f4a34c-63e9-4be2-9031-ad9f2c076fd4.gif" alt="ゲームスクリーンショット 1" onerror="this.style.display='none'">
+            </div>
+            <div class="project-body">
+
+                <!-- プロジェクト概要 -->
+                <p class="project-desc">
+                    スライムが大量に押し寄せる3Dシューティングゲームです。
+                    ゲームエンジンを一切使わず、<strong>Direct3D / HLSL シェーダー / Assimp による3Dモデル読み込み</strong>などを
+                    すべて自前で実装することで、ゲームエンジンの裏側にある技術を深く理解しました。
+                    47コミット・約半年間の継続的な開発を通じて完成させたポートフォリオ作品です。
+                </p>
+
+                <!-- 実装機能 -->
+                <h4 style="margin-bottom:1rem; color:#922b21;">✅ 実装した主な機能</h4>
+                <div class="feature-grid">
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>🖥️ Direct3D レンダリングパイプライン</h4>
+                        <p>頂点バッファ・インデックスバッファ・定数バッファを手動管理。スワップチェーンからフレーム描画まで自前実装。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>💡 ライティングシステム</h4>
+                        <p>Phong反射モデルによるディフューズ・スペキュラ・ポイントライトを HLSL ピクセルシェーダーで実装。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>🎭 スキンドアニメーション</h4>
+                        <p>Assimp のボーンデータを読み込み、頂点シェーダーで骨格アニメーションを計算・適用。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>💥 コリジョン検出</h4>
+                        <p>AABB / 球体ベースの当たり判定を独自実装。弾丸・プレイヤー・敵スライム間の衝突を管理。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>🌟 パーティクルシステム</h4>
+                        <p>ビルボードレンダリングを用いた弾着エフェクト・爆発パーティクルを実装。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>👾 敵スポーンシステム</h4>
+                        <p>ウェーブ形式でスライムを生成・移動・追跡させるAIロジックを C++ で実装。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>🔊 オーディオマネージャー</h4>
+                        <p>Windows Audio API を用いたSE・BGM の再生管理システムを実装。</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color:#e74c3c;">
+                        <h4>📷 カメラシステム</h4>
+                        <p>プレイヤー追従カメラとデバッグカメラを切り替えられる自由視点カメラを実装。</p>
+                    </div>
+                </div>
+
+                <!-- 技術的ポイント -->
+                <h4 style="margin-bottom:1rem; color:#922b21;">🔧 技術的なハイライト</h4>
+                <div class="arch-box" style="background:#2d0a0a;">
+<pre><span class="comment">// DirectX 11 レンダリングループ (概略)</span>
+
+毎フレーム:
+  1. 入力処理 (keyboard / mouse)
+  2. ゲームロジック更新 (player / enemy / bullet)
+  3. コリジョン判定 (AABB / 球体)
+  4. ─ GPU へ描画コマンド送信 ─
+     │  頂点バッファ バインド
+     │  定数バッファ更新 (ワールド行列 / カメラ行列 / ライト)
+     │  HLSL 頂点シェーダー → ラスタライズ → ピクセルシェーダー
+     └  スワップチェーン Present()
+  5. パーティクル・ビルボード描画
+  6. デバッグテキスト描画</pre>
+                </div>
+
+                <!-- 開発タイムライン -->
+                <h4 style="margin-bottom:1rem; color:#922b21;">📅 開発の流れ（主要マイルストーン）</h4>
+                <table class="pattern-table">
+                    <thead>
+                        <tr>
+                            <th style="background:#922b21;">時期</th>
+                            <th style="background:#922b21;">実装内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>2025年9月</strong></td>
+                            <td>プロジェクト開始 — シェーダー基礎・メッシュフィールド・ライティング実装</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2025年10〜11月</strong></td>
+                            <td>3Dモデル読み込み (Assimp) → プレイヤー作成 → コリジョン判定 → 弾発射</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2025年11月後半</strong></td>
+                            <td>ビルボードアニメーション・プレイヤーカメラ統合・弾着エフェクト実装</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2026年5月</strong></td>
+                            <td>視点改善・敵AI修正・最終調整（47コミットで完成）</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div><!-- /project-card Slime Invasion -->
+        
+    </section>
+
+    <!-- ========== 成果・学習 ========== -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">
+                <span>METRICS &amp; LEARNINGS</span>成果と学び
+            </h2>
+            <div class="divider"></div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="num">3</div>
+                    <div class="unit">完成ゲームプロジェクト</div>
+                    <p>個人開発2作品 + チームゲームジャム1作品</p>
+                </div>
+                <div class="metric-card">
+                    <div class="num">38</div>
+                    <div class="unit">カスタムC#スクリプト</div>
+                    <p>ゲームプレイ・ネットワーク・UI の全システムを自作</p>
+                </div>
+                <div class="metric-card">
+                    <div class="num">90<span style="font-size:1.2rem">+</span></div>
+                    <div class="unit">総Gitコミット</div>
+                    <p>3プロジェクト合計。継続的な機能追加の記録</p>
+                </div>
+                <div class="metric-card">
+                    <div class="num">3</div>
+                    <div class="unit">言語・環境</div>
+                    <p>C# / C++ / SQL — 複数スタックを横断した開発経験</p>
+                </div>
+                <div class="metric-card">
+                    <div class="num">3人</div>
+                    <div class="unit">チーム開発経験</div>
+                    <p>日本人メンバーとのゲームジャム。Git / PR でコラボレーション</p>
+                </div>
+            </div>
+
+            <h3 style="text-align:center; color:var(--green-dark); margin-bottom:1.5rem;">
+                💡 各プロジェクトで習得した技術
+            </h3>
+            <div class="learning-list">
+                <div class="learning-item">
+                    <div class="icon">🌐</div>
+                    <div>
+                        <h4>リアルタイムネットワーク同期</h4>
+                        <p>SyncVar / SyncList を活用したサーバー→クライアントの自動状態伝播。レイテンシを意識した設計。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">🤝</div>
+                    <div>
+                        <h4>チーム開発・コラボレーション</h4>
+                        <p>日本人メンバーと Git / PR を使った非同期開発。役割分担・コードレビュー・統合作業を経験。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">🖥️</div>
+                    <div>
+                        <h4>DirectX 11 レンダリング実装</h4>
+                        <p>ゲームエンジンを使わず描画パイプラインをゼロ構築。HLSL シェーダーでライティング・アニメーションを実現。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">⚡</div>
+                    <div>
+                        <h4>Unity ECS / DOTS 設計</h4>
+                        <p>ISystem / IJobEntity を用いたデータ指向設計。Burst Compiler で CPU パフォーマンスを最大化する構造。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">🗄️</div>
+                    <div>
+                        <h4>SQLデータベース連携</h4>
+                        <p>ゲームデータの永続化・クエリ最適化。JOIN・トランザクションを活用したデータ管理を実践。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">🏗️</div>
+                    <div>
+                        <h4>依存性注入によるアーキテクチャ</h4>
+                        <p>Zenject を用いたシーンレベルDIコンテナ設定とFactory パターンによる実行時生成。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">📦</div>
+                    <div>
+                        <h4>データドリブン設計</h4>
+                        <p>ScriptableObject でアイテム定義を分離。コード修正なしで新アイテムを追加できる構造。</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="icon">💥</div>
+                    <div>
+                        <h4>C++ コリジョン・物理実装</h4>
+                        <p>ライブラリ非依存でAABB・球体当たり判定を実装。スライム敵AIの移動・追跡ロジックも自作。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== 連絡先 ========== -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span>GET IN TOUCH</span>連絡先
+            </h2>
+            <div class="divider" style="background:var(--yellow)"></div>
+
+            <p class="contact-text">
+                Unityエンジニアとして日本のゲーム会社でのキャリアを志望しています。<br>
+                インターンシップ・新卒・第二新卒ポジションも歓迎です。<br>
+                ぜひお気軽にご連絡ください！
+            </p>
+
+            <div class="contact-links">
+                <a class="contact-link" href="mailto:pavlovmikhailn1@gmail.com">
+                    ✉️ &nbsp;pavlovmikhailn1@gmail.com
+                </a>
+                <a class="contact-link" href="https://github.com/mikhailroug" target="_blank">
+                    🐙 &nbsp;GitHub: mikhailroug
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== フッター ========== -->
+    <footer>
+        <p>© 2026 Mikhail Pavlov — Game Developer Portfolio (Unity / C++ / DirectX) &nbsp;|&nbsp; 日本での就職活動用ポートフォリオ</p>
+    </footer>
+
+
+
+</body></html>
