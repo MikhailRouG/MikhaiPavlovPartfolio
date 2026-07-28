@@ -470,78 +470,6 @@
         }
 
         /* ============================
-           実績・成果
-        ============================ */
-        #achievements {
-            background: var(--cream);
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 3rem;
-        }
-
-        .metric-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-            .metric-card .num {
-                font-size: 2.2rem;
-                font-weight: 700;
-                color: var(--green-mid);
-            }
-
-            .metric-card .unit {
-                font-size: .8rem;
-                color: var(--text-light);
-            }
-
-            .metric-card p {
-                font-size: .85rem;
-                color: var(--text-mid);
-                margin-top: .4rem;
-            }
-
-        /* 学習ポイント */
-        .learning-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-
-        .learning-item {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 1.2rem 1.5rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-            .learning-item .icon {
-                font-size: 1.6rem;
-                flex-shrink: 0;
-            }
-
-            .learning-item h4 {
-                font-size: .9rem;
-                color: var(--green-dark);
-                margin-bottom: .3rem;
-            }
-
-            .learning-item p {
-                font-size: .82rem;
-                color: var(--text-light);
-            }
-
-        /* ============================
            連絡先
         ============================ */
         #contact {
@@ -669,7 +597,6 @@
             <li><a href="#about">自己紹介</a></li>
             <li><a href="#skills">スキル</a></li>
             <li><a href="#project">プロジェクト</a></li>
-            <li><a href="#achievements">成果</a></li>
             <li><a href="#contact">連絡先</a></li>
         </ul>
     </nav>
@@ -1289,158 +1216,11 @@
                     </div>
                 </div>
 
-                <!-- 技術的ポイント -->
-                <h4 style="margin-bottom:1rem; color:#922b21;">🔧 技術的なハイライト</h4>
-                <div class="arch-box" style="background:#2d0a0a;">
-<pre><span class="comment">// DirectX 11 レンダリングループ (概略)</span>
-
-毎フレーム:
-  1. 入力処理 (keyboard / mouse)
-  2. ゲームロジック更新 (player / enemy / bullet)
-  3. コリジョン判定 (AABB / 球体)
-  4. ─ GPU へ描画コマンド送信 ─
-     │  頂点バッファ バインド
-     │  定数バッファ更新 (ワールド行列 / カメラ行列 / ライト)
-     │  HLSL 頂点シェーダー → ラスタライズ → ピクセルシェーダー
-     └  スワップチェーン Present()
-  5. パーティクル・ビルボード描画
-  6. デバッグテキスト描画</pre>
-                </div>
-
-                <!-- 開発タイムライン -->
-                <h4 style="margin-bottom:1rem; color:#922b21;">📅 開発の流れ（主要マイルストーン）</h4>
-                <table class="pattern-table">
-                    <thead>
-                        <tr>
-                            <th style="background:#922b21;">時期</th>
-                            <th style="background:#922b21;">実装内容</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>2025年9月</strong></td>
-                            <td>プロジェクト開始 — シェーダー基礎・メッシュフィールド・ライティング実装</td>
-                        </tr>
-                        <tr>
-                            <td><strong>2025年10〜11月</strong></td>
-                            <td>3Dモデル読み込み (Assimp) → プレイヤー作成 → コリジョン判定 → 弾発射</td>
-                        </tr>
-                        <tr>
-                            <td><strong>2025年11月後半</strong></td>
-                            <td>ビルボードアニメーション・プレイヤーカメラ統合・弾着エフェクト実装</td>
-                        </tr>
-                        <tr>
-                            <td><strong>2026年5月</strong></td>
-                            <td>視点改善・敵AI修正・最終調整（47コミットで完成）</td>
-                        </tr>
-                    </tbody>
-                </table>
-
             </div>
         </div><!-- /project-card Slime Invasion -->
         
     </section>
 
-    <!-- ========== 成果・学習 ========== -->
-    <section id="achievements">
-        <div class="container">
-            <h2 class="section-title">
-                <span>METRICS &amp; LEARNINGS</span>成果と学び
-            </h2>
-            <div class="divider"></div>
-
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="num">3</div>
-                    <div class="unit">完成ゲームプロジェクト</div>
-                    <p>個人開発2作品 + チームゲームジャム1作品</p>
-                </div>
-                <div class="metric-card">
-                    <div class="num">38</div>
-                    <div class="unit">カスタムC#スクリプト</div>
-                    <p>ゲームプレイ・ネットワーク・UI の全システムを自作</p>
-                </div>
-                <div class="metric-card">
-                    <div class="num">90<span style="font-size:1.2rem">+</span></div>
-                    <div class="unit">総Gitコミット</div>
-                    <p>3プロジェクト合計。継続的な機能追加の記録</p>
-                </div>
-                <div class="metric-card">
-                    <div class="num">3</div>
-                    <div class="unit">言語・環境</div>
-                    <p>C# / C++ / SQL — 複数スタックを横断した開発経験</p>
-                </div>
-                <div class="metric-card">
-                    <div class="num">3人</div>
-                    <div class="unit">チーム開発経験</div>
-                    <p>日本人メンバーとのゲームジャム。Git / PR でコラボレーション</p>
-                </div>
-            </div>
-
-            <h3 style="text-align:center; color:var(--green-dark); margin-bottom:1.5rem;">
-                💡 各プロジェクトで習得した技術
-            </h3>
-            <div class="learning-list">
-                <div class="learning-item">
-                    <div class="icon">🌐</div>
-                    <div>
-                        <h4>リアルタイムネットワーク同期</h4>
-                        <p>SyncVar / SyncList を活用したサーバー→クライアントの自動状態伝播。レイテンシを意識した設計。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">🤝</div>
-                    <div>
-                        <h4>チーム開発・コラボレーション</h4>
-                        <p>日本人メンバーと Git / PR を使った非同期開発。役割分担・コードレビュー・統合作業を経験。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">🖥️</div>
-                    <div>
-                        <h4>DirectX 11 レンダリング実装</h4>
-                        <p>ゲームエンジンを使わず描画パイプラインをゼロ構築。HLSL シェーダーでライティング・アニメーションを実現。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">⚡</div>
-                    <div>
-                        <h4>Unity ECS / DOTS 設計</h4>
-                        <p>ISystem / IJobEntity を用いたデータ指向設計。Burst Compiler で CPU パフォーマンスを最大化する構造。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">🗄️</div>
-                    <div>
-                        <h4>SQLデータベース連携</h4>
-                        <p>ゲームデータの永続化・クエリ最適化。JOIN・トランザクションを活用したデータ管理を実践。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">🏗️</div>
-                    <div>
-                        <h4>依存性注入によるアーキテクチャ</h4>
-                        <p>Zenject を用いたシーンレベルDIコンテナ設定とFactory パターンによる実行時生成。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">📦</div>
-                    <div>
-                        <h4>データドリブン設計</h4>
-                        <p>ScriptableObject でアイテム定義を分離。コード修正なしで新アイテムを追加できる構造。</p>
-                    </div>
-                </div>
-                <div class="learning-item">
-                    <div class="icon">💥</div>
-                    <div>
-                        <h4>C++ コリジョン・物理実装</h4>
-                        <p>ライブラリ非依存でAABB・球体当たり判定を実装。スライム敵AIの移動・追跡ロジックも自作。</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
 
     <!-- ========== 連絡先 ========== -->
     <section id="contact">
