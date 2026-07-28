@@ -111,20 +111,6 @@
                 user-select: none;
             }
 
-        .hero-avatar {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid var(--yellow);
-            margin: 0 auto 1.4rem;
-            background: var(--green-pale);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            overflow: hidden;
-        }
-
         .hero h1 {
             font-size: 2.4rem;
             font-weight: 700;
@@ -690,9 +676,6 @@
 
     <!-- ========== ヒーロー ========== -->
     <header class="hero">
-        <div class="hero-avatar">
-            <img alt="Mikhail Pavlov" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" src="MikhailPavlov_2_files/120414374.jpg">
-        </div>
         <h1>Mikhail Pavlov<br><span style="font-size:1rem; font-weight:400; letter-spacing:.15em; color:var(--yellow); opacity:.9;">ミハイル パブロフ</span></h1>
         <p class="subtitle">ゲームエンジニア / Unity &amp; C++ Developer</p>
         <p class="tagline">
@@ -1044,6 +1027,10 @@
                             <p>ScriptableObject でアイテム定義。Zenject でシーンに注入し ID 検索可能なデータドリブン設計。</p>
                         </div>
                         <div class="feature-item">
+                            <h4>🧩 ScriptableObject による拡張性</h4>
+                            <p><strong>植物もエフェクトも ScriptableObject で定義</strong>。成長段階・成長時間・収穫物や、再生するエフェクト・演出は SO のアセットを追加・編集するだけで変更でき、<strong>コードを一切書き換えずに新しい作物やエフェクトを追加</strong>できます。</p>
+                        </div>
+                        <div class="feature-item">
                             <h4>🚀 描画最適化 (Draw Call削減)</h4>
                             <p>GPUインスタンシング・Static Batching・動的バッチングを適用。<strong>Draw Call を 286 → 88 に約 70% 削減</strong>し、FPS を 111 → 135 以上に改善。</p>
                         </div>
@@ -1109,8 +1096,8 @@
                             </tr>
                             <tr>
                                 <td><strong>ScriptableObject データ</strong></td>
-                                <td><code>ItemConfig</code> 継承ツリー</td>
-                                <td>コード変更なしでアイテム追加可能なデータ設計</td>
+                                <td><code>ItemConfig</code> 継承ツリー・植物・エフェクト定義</td>
+                                <td>コード変更なしで植物・エフェクト・アイテムを追加/編集できるデータ設計</td>
                             </tr>
                             <tr>
                                 <td><strong>描画最適化</strong></td>
@@ -1124,35 +1111,6 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <br>
-
-                    <!-- プロジェクト構成 -->
-                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">📁 プロジェクト構成 (カスタムスクリプト)</h4>
-                    <div class="arch-box">
-<pre>Assets/Scripts/
-├── Gameplay/
-│   ├── Player/          <span class="comment"># 入力・移動・インタラクション・設置・インベントリUI (8スクリプト)</span>
-│   ├── FarmScripts/     <span class="comment"># 農作物成長・収穫ロジック・ゴースト検証 (6スクリプト)</span>
-│   ├── Inventory/       <span class="comment"># SyncListインベントリ・スロット・UI (4スクリプト)</span>
-│   ├── Items/           <span class="comment"># ItemConfig抽象基底・種・食料・DBビルダー (5スクリプト)</span>
-│   └── Zenject/         <span class="comment"># DIコンフィグ・シーンインストーラー (2スクリプト)</span>
-└── Menu/                <span class="comment"># メインメニュー・ローディング画面 (2スクリプト)</span>
-
-Assets/Data/             <span class="comment"># ScriptableObject資産 (種2種・食料3種・DB)</span>
-Assets/Scenes/           <span class="comment"># MainMenu.unity / GameScene.unity</span>
-Assets/Prefab/           <span class="comment"># Player・Plant・UI prefab群</span></pre>
-                    </div>
-
-                    <!-- 今後の機能 -->
-                    <h4 style="margin-bottom:.8rem; color:var(--green-dark);">🚧 今後実装予定の機能</h4>
-                    <ul style="color:var(--text-mid); padding-left:1.4rem; font-size:.9rem; line-height:2;">
-                        <li>ゲーム内通貨・ショップ経済システム</li>
-                        <li>プレイヤーデータの保存・読み込み (セーブ機能)</li>
-                        <li>効果音・環境音の実装</li>
-                        <li>水やり・肥料・作物の健康状態システム</li>
-                        <li>プレイヤー間取引・チャット機能</li>
-                    </ul>
 
                 </div>
             </div><!-- /project-card Make-a-Farm -->
