@@ -841,18 +841,6 @@
                             <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
                         </li>
                         <li>
-                            <span>Visual Studio / Rider</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
-                        </li>
-                        <li>
-                            <span>Unity Editor拡張</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
-                        </li>
-                        <li>
-                            <span>Physics (CharacterController / WheelCollider)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
-                        </li>
-                        <li>
                             <span>Blender (3Dモデル基礎)</span>
                             <div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div>
                         </li>
@@ -945,10 +933,6 @@
                             <p>Zenject の Factory パターンでショップカードを動的生成。インタラクション起動 UI を実装。</p>
                         </div>
                         <div class="feature-item">
-                            <h4>🚗 乗り物システム</h4>
-                            <p>WheelCollider を用いた車両物理。乗降・Cinemachine カメラ切換・ハンドル操作を実装。</p>
-                        </div>
-                        <div class="feature-item">
                             <h4>🖱️ インタラクションシステム</h4>
                             <p>レイキャスト + <code>IInteractable</code> インターフェースによるドア・農作物・ショップ・乗り物の統一操作。</p>
                         </div>
@@ -968,29 +952,6 @@
                             <h4>🎮 プレイヤーコントローラ</h4>
                             <p>カメラ相対移動・スプリント・ジャンプ・アニメーション連動を New Input System で実装。</p>
                         </div>
-                    </div>
-
-                    <!-- ネットワークアーキテクチャ -->
-                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">🏗️ ネットワークアーキテクチャ</h4>
-                    <div class="arch-box">
-<pre><span class="comment">// サーバー権威型フロー</span>
-
-クライアント入力 (WASD / E キー / LMB)
-    │
-    ▼
-[Command] ─────────────────► サーバー処理・バリデーション
-                                      │
-                         ┌────────────┴────────────┐
-                         ▼                         ▼
-                   SyncVar / SyncList         NetworkServer.Spawn()
-                   （状態同期）                （オブジェクト生成）
-                         │                         │
-                         └────────────┬────────────┘
-                                      ▼
-                              全クライアントへ自動配信
-                                      │
-                                      ▼
-                             クライアント UI 更新・演出再生</pre>
                     </div>
 
                     <!-- 設計パターン -->
