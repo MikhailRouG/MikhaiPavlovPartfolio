@@ -1,8 +1,27 @@
-<html lang="ja"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><meta charset="UTF-8">
-    <meta name="referrer" content="no-referrer-when-downgrade">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mikhail Pavlov — ゲームエンジニア ポートフォリオ</title>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <title>Mikhail Pavlov (パブロフ ミハイル) — ゲームエンジニア ポートフォリオ | Unity / C# / C++ / DirectX 11</title>
+    <meta name="description" content="Unity 6・C# によるマルチプレイヤーゲーム開発（Mirror Networking / Zenject / ScriptableObject）と、C++・DirectX 11・HLSL による独自レンダリングエンジン開発を手がけるゲームエンジニア Pavlov Mikhail のポートフォリオ。HAL東京 ゲームプログラム学科 2027年3月卒業見込。Unityエンジニア・ゲームプログラマー職を志望。">
+    <meta name="author" content="Mikhail Pavlov">
+    <meta name="keywords" content="ゲームエンジニア,Unityエンジニア,ゲームプログラマー,新卒,ポートフォリオ,Unity 6,C#,Mirror Networking,Zenject,ScriptableObject,URP,Shader Graph,Unity ECS,DOTS,Burst,C++,DirectX 11,HLSL,SQL,Git,Pavlov Mikhail,HAL東京">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mikhail Pavlov — ゲームエンジニア ポートフォリオ">
+    <meta property="og:title" content="Mikhail Pavlov — ゲームエンジニア ポートフォリオ (Unity / C++ / DirectX 11)">
+    <meta property="og:description" content="Unity 6 + Mirror によるマルチプレイヤー農場ゲーム、C++ / DirectX 11 の独自エンジンなど、ゲームエンジニアとしての制作実績をまとめたポートフォリオです。">
+    <meta property="og:url" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/">
+    <meta property="og:image" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mikhail Pavlov — ゲームエンジニア ポートフォリオ">
+    <meta name="twitter:description" content="Unity 6 + Mirror のマルチプレイヤーゲームと C++ / DirectX 11 の自作エンジン。ゲームエンジニア志望のポートフォリオ。">
+    <meta name="twitter:image" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg">
+
     <style>
         /* ============================
            CSS リセット & 変数
@@ -296,6 +315,20 @@
                     border-bottom: none;
                 }
 
+        .skill-meta {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            flex-shrink: 0;
+        }
+
+            .skill-meta .skill-level {
+                font-size: .75rem;
+                font-weight: 700;
+                color: var(--green-mid);
+                white-space: nowrap;
+            }
+
         .skill-bar {
             width: 100px;
             height: 6px;
@@ -587,8 +620,9 @@
             }
         }
     </style>
+</head>
 
-
+<body>
 
     <!-- ========== ナビゲーション ========== -->
     <nav>
@@ -656,11 +690,15 @@
                     </div>
                     <div class="fact-card">
                         <div class="label">所属</div>
-                        <div class="value">HAL東京 ゲームプログラミング科</div>
+                        <div class="value">HAL東京 昼間部2年制課程 ゲームプログラム学科<br><span style="font-weight:400; font-size:.85rem; color:var(--text-mid);">2025年4月 入学 ／ 2027年3月 卒業見込（2027年卒 新卒）</span></div>
                     </div>
                     <div class="fact-card">
                         <div class="label">主要言語</div>
                         <div class="value">C# / C++ / SQL / .Net</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="label">語学</div>
+                        <div class="value">日本語（日常会話〜ビジネスレベル）<br><span style="font-weight:400; font-size:.85rem; color:var(--text-mid);">HAL東京にて日本語による授業を履修 ／ 英語・ロシア語（母語）</span></div>
                     </div>
                     <div class="fact-card">
                         <div class="label">ゲームエンジン・環境</div>
@@ -694,27 +732,27 @@
                     <ul class="skill-list">
                         <li>
                             <span>Unity 6 (URP)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
                         </li>
                         <li>
                             <span>C#</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
                         </li>
                         <li>
                             <span>Unity Input System</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                         <li>
                             <span>Shader Graph (URP)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>Cinemachine</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>TextMesh Pro / uGUI</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                     </ul>
                 </div>
@@ -724,23 +762,23 @@
                     <ul class="skill-list">
                         <li>
                             <span>Mirror Networking</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>NetworkBehaviour / SyncVar</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                         <li>
                             <span>SyncList / Command / RPC</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                         <li>
                             <span>サーバー権威型設計</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>Host/Client アーキテクチャ</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                     </ul>
                 </div>
@@ -750,23 +788,23 @@
                     <ul class="skill-list">
                         <li>
                             <span>Zenject (依存性注入)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>ScriptableObject設計</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
                         </li>
                         <li>
                             <span>インターフェース設計</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                         <li>
                             <span>Factory / Command パターン</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>データドリブン設計</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                     </ul>
                 </div>
@@ -776,19 +814,19 @@
                     <ul class="skill-list">
                         <li>
                             <span>SQL (SELECT / JOIN / トランザクション)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
                         </li>
                         <li>
                             <span>SQLite (ゲームデータ永続化)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                         </li>
                         <li>
                             <span>ScriptableObject DB設計</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
                         </li>
                         <li>
                             <span>データ正規化・スキーマ設計</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
                         </li>
                     </ul>
                 </div>
@@ -798,19 +836,19 @@
                     <ul class="skill-list">
                         <li>
                             <span>Entity Component System (ECS)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                         </li>
                         <li>
                             <span>ISystem / IJobEntity</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
                         </li>
                         <li>
                             <span>Burst Compiler / Job System</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
                         </li>
                         <li>
                             <span>データ指向設計 (DoD)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                         </li>
                     </ul>
                 </div>
@@ -820,23 +858,23 @@
                     <ul class="skill-list">
                         <li>
                             <span>C++ (モダンC++11/17)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                         </li>
                         <li>
                             <span>DirectX 11 / Direct3D</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                         </li>
                         <li>
                             <span>HLSL (頂点 / ピクセルシェーダー)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                         </li>
                         <li>
                             <span>Assimp (3Dモデル読み込み)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                         </li>
                         <li>
                             <span>スキンドアニメーション / 衝突検出</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
                         </li>
                     </ul>
                 </div>
@@ -846,11 +884,11 @@
                     <ul class="skill-list">
                         <li>
                             <span>Git / GitHub</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                         </li>
                         <li>
                             <span>Blender (3Dモデル基礎)</span>
-                            <div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div>
+                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div></div>
                         </li>
                     </ul>
                 </div>
