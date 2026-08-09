@@ -1,1267 +1,882 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-
-    <title>Mikhail Pavlov (パブロフ ミハイル) — ゲームエンジニア ポートフォリオ | Unity / C# / C++ / DirectX 11</title>
-    <meta name="description" content="Unity 6・C# によるマルチプレイヤーゲーム開発（Mirror Networking / Zenject / ScriptableObject）と、C++・DirectX 11・HLSL による独自レンダリングエンジン開発を手がけるゲームエンジニア Pavlov Mikhail のポートフォリオ。HAL東京 ゲームプログラム学科 2027年3月卒業見込。Unityエンジニア・ゲームプログラマー職を志望。">
-    <meta name="author" content="Mikhail Pavlov">
-    <meta name="keywords" content="ゲームエンジニア,Unityエンジニア,ゲームプログラマー,新卒,ポートフォリオ,Unity 6,C#,Mirror Networking,Zenject,ScriptableObject,URP,Shader Graph,Unity ECS,DOTS,Burst,C++,DirectX 11,HLSL,SQL,Git,Pavlov Mikhail,HAL東京">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Mikhail Pavlov — ゲームエンジニア ポートフォリオ">
-    <meta property="og:title" content="Mikhail Pavlov — ゲームエンジニア ポートフォリオ (Unity / C++ / DirectX 11)">
-    <meta property="og:description" content="Unity 6 + Mirror によるマルチプレイヤー農場ゲーム、C++ / DirectX 11 の独自エンジンなど、ゲームエンジニアとしての制作実績をまとめたポートフォリオです。">
-    <meta property="og:url" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/">
-    <meta property="og:image" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg">
-    <meta property="og:locale" content="ja_JP">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mikhail Pavlov — ゲームエンジニア ポートフォリオ">
-    <meta name="twitter:description" content="Unity 6 + Mirror のマルチプレイヤーゲームと C++ / DirectX 11 の自作エンジン。ゲームエンジニア志望のポートフォリオ。">
-    <meta name="twitter:image" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg">
-
-    <style>
-        /* ============================
-           CSS リセット & 変数
-        ============================ */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --green-dark: #1b4332;
-            --green-mid: #2d6a4f;
-            --green-light: #40916c;
-            --green-pale: #d8f3dc;
-            --yellow: #f4d35e;
-            --brown: #7b5e3d;
-            --cream: #fefae0;
-            --white: #ffffff;
-            --text-dark: #1a1a2e;
-            --text-mid: #3d405b;
-            --text-light: #6b6b8a;
-            --radius: 12px;
-            --shadow: 0 4px 24px rgba(0,0,0,.10);
-            --transition: .25s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", sans-serif;
-            background: var(--cream);
-            color: var(--text-dark);
-            line-height: 1.7;
-        }
-
-        a {
-            color: var(--green-mid);
-            text-decoration: none;
-        }
-
-            a:hover {
-                text-decoration: underline;
-            }
-
-        /* ============================
-           ナビゲーション
-        ============================ */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--green-dark);
-            padding: .9rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,.3);
-        }
-
-            nav .logo {
-                color: var(--yellow);
-                font-size: 1.1rem;
-                font-weight: 700;
-                letter-spacing: .05em;
-            }
-
-            nav ul {
-                list-style: none;
-                display: flex;
-                gap: 1.6rem;
-            }
-
-                nav ul li a {
-                    color: var(--green-pale);
-                    font-size: .9rem;
-                    transition: color var(--transition);
-                }
-
-                    nav ul li a:hover {
-                        color: var(--yellow);
-                        text-decoration: none;
-                    }
-
-        /* ============================
-           ヒーローセクション
-        ============================ */
-        .hero {
-            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 6rem 2rem 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .hero::before {
-                content: "🌾";
-                position: absolute;
-                font-size: 14rem;
-                opacity: .06;
-                top: -2rem;
-                right: -2rem;
-                user-select: none;
-            }
-
-        .hero h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            margin-bottom: .4rem;
-            letter-spacing: .03em;
-        }
-
-        .hero .subtitle {
-            font-size: 1.1rem;
-            color: var(--yellow);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            letter-spacing: .08em;
-        }
-
-        .hero .tagline {
-            font-size: 1rem;
-            opacity: .85;
-            max-width: 560px;
-            margin: 0 auto 2rem;
-        }
-
-        .hero-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: .65rem 1.6rem;
-            border-radius: 50px;
-            font-size: .9rem;
-            font-weight: 600;
-            transition: transform var(--transition), box-shadow var(--transition);
-        }
-
-            .btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 18px rgba(0,0,0,.2);
-                text-decoration: none;
-            }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--green-dark);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--green-pale);
-            color: var(--green-pale);
-        }
-
-        /* ============================
-           セクション共通
-        ============================ */
-        section {
-            padding: 5rem 2rem;
-        }
-
-        .container {
-            max-width: 1060px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--green-dark);
-            text-align: center;
-            margin-bottom: .4rem;
-        }
-
-            .section-title span {
-                display: block;
-                font-size: .85rem;
-                font-weight: 400;
-                color: var(--text-light);
-                letter-spacing: .12em;
-                text-transform: uppercase;
-                margin-bottom: .3rem;
-            }
-
-        .divider {
-            width: 50px;
-            height: 4px;
-            background: var(--yellow);
-            border-radius: 2px;
-            margin: .8rem auto 3rem;
-        }
-
-        /* ============================
-           自己紹介
-        ============================ */
-        #about {
-            background: var(--white);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            color: var(--text-mid);
-        }
-
-        .about-facts {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .fact-card {
-            background: var(--green-pale);
-            border-left: 4px solid var(--green-mid);
-            border-radius: 0 var(--radius) var(--radius) 0;
-            padding: .9rem 1.2rem;
-        }
-
-            .fact-card .label {
-                font-size: .75rem;
-                color: var(--green-mid);
-                font-weight: 700;
-                letter-spacing: .08em;
-                text-transform: uppercase;
-            }
-
-            .fact-card .value {
-                font-weight: 600;
-                color: var(--text-dark);
-            }
-
-        /* ============================
-           スキル
-        ============================ */
-        #skills {
-            background: var(--cream);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 1.6rem;
-            box-shadow: var(--shadow);
-        }
-
-            .skill-category h3 {
-                font-size: 1rem;
-                color: var(--green-dark);
-                margin-bottom: 1rem;
-                display: flex;
-                align-items: center;
-                gap: .5rem;
-            }
-
-        .skill-list {
-            list-style: none;
-        }
-
-            .skill-list li {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: .4rem 0;
-                border-bottom: 1px solid var(--green-pale);
-                font-size: .9rem;
-                color: var(--text-mid);
-            }
-
-                .skill-list li:last-child {
-                    border-bottom: none;
-                }
-
-        .skill-meta {
-            display: flex;
-            align-items: center;
-            gap: .6rem;
-            flex-shrink: 0;
-        }
-
-            .skill-meta .skill-level {
-                font-size: .75rem;
-                font-weight: 700;
-                color: var(--green-mid);
-                white-space: nowrap;
-            }
-
-        .skill-bar {
-            width: 100px;
-            height: 6px;
-            background: var(--green-pale);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--green-mid), var(--green-light));
-            border-radius: 3px;
-        }
-
-        /* ============================
-           プロジェクト
-        ============================ */
-        #project {
-            background: var(--white);
-        }
-
-        .project-card {
-            background: var(--cream);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 3rem;
-        }
-
-        .project-header {
-            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
-            color: var(--white);
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-            .project-header h3 {
-                font-size: 1.5rem;
-                margin-bottom: .4rem;
-            }
-
-            .project-header .project-type {
-                font-size: .8rem;
-                background: var(--yellow);
-                color: var(--green-dark);
-                padding: .2rem .8rem;
-                border-radius: 50px;
-                font-weight: 700;
-            }
-
-            .project-header .tags {
-                display: flex;
-                gap: .5rem;
-                flex-wrap: wrap;
-                margin-top: .8rem;
-            }
-
-        .tag {
-            background: rgba(255,255,255,.15);
-            color: var(--green-pale);
-            font-size: .75rem;
-            padding: .2rem .7rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255,255,255,.2);
-        }
-
-        .project-body {
-            padding: 2rem;
-        }
-
-        .project-desc {
-            color: var(--text-mid);
-            margin-bottom: 1.6rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .feature-item {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 1rem 1.2rem;
-            border-left: 3px solid var(--green-light);
-        }
-
-            .feature-item h4 {
-                font-size: .9rem;
-                color: var(--green-dark);
-                margin-bottom: .3rem;
-            }
-
-            .feature-item p {
-                font-size: .82rem;
-                color: var(--text-light);
-            }
-
-        /* スクリーンショット */
-        .screenshots {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-            .screenshots img {
-                width: 100%;
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
-                transition: transform var(--transition);
-            }
-
-                .screenshots img:hover {
-                    transform: scale(1.02);
-                }
-
-        /* アーキテクチャ図 */
-        .arch-box {
-            background: var(--green-dark);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            font-family: "Courier New", monospace;
-            color: var(--green-pale);
-            font-size: .85rem;
-            overflow-x: auto;
-        }
-
-            .arch-box .comment {
-                color: #7ee8a2;
-                opacity: .7;
-            }
-
-        /* パターン表 */
-        .pattern-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: .88rem;
-        }
-
-            .pattern-table th {
-                background: var(--green-mid);
-                color: var(--white);
-                padding: .7rem 1rem;
-                text-align: left;
-            }
-
-            .pattern-table td {
-                padding: .7rem 1rem;
-                border-bottom: 1px solid var(--green-pale);
-                color: var(--text-mid);
-                vertical-align: top;
-            }
-
-            .pattern-table tr:nth-child(even) td {
-                background: var(--white);
-            }
-
-        code {
-            background: var(--green-pale);
-            color: var(--green-dark);
-            padding: .1rem .4rem;
-            border-radius: 4px;
-            font-size: .83em;
-        }
-
-        /* ============================
-           連絡先
-        ============================ */
-        #contact {
-            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
-            color: var(--white);
-            text-align: center;
-        }
-
-            #contact .section-title {
-                color: var(--yellow);
-            }
-
-                #contact .section-title span {
-                    color: rgba(255,255,255,.7);
-                }
-
-        .contact-text {
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            opacity: .85;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            background: rgba(255,255,255,.1);
-            border: 1px solid rgba(255,255,255,.2);
-            color: var(--white);
-            padding: .7rem 1.4rem;
-            border-radius: 50px;
-            font-size: .9rem;
-            transition: background var(--transition);
-        }
-
-            .contact-link:hover {
-                background: rgba(255,255,255,.2);
-                text-decoration: none;
-            }
-
-        /* ============================
-           フッター
-        ============================ */
-        footer {
-            background: var(--green-dark);
-            color: var(--green-pale);
-            text-align: center;
-            padding: 1.5rem;
-            font-size: .82rem;
-            opacity: .8;
-        }
-
-        /* ============================
-           チームバッジ
-        ============================ */
-        .team-badges {
-            display: flex;
-            gap: .6rem;
-            flex-wrap: wrap;
-            margin: 1rem 0 1.4rem;
-        }
-
-        .team-badge {
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            background: rgba(255,255,255,.12);
-            border: 1px solid rgba(255,255,255,.25);
-            border-radius: 50px;
-            padding: .3rem .9rem;
-            font-size: .82rem;
-            color: var(--white);
-        }
-
-            .team-badge.highlight {
-                background: rgba(244,211,94,.2);
-                border-color: var(--yellow);
-                color: var(--yellow);
-                font-weight: 700;
-            }
-
-        .role-tag {
-            display: inline-block;
-            background: var(--yellow);
-            color: #1a1a2e;
-            font-size: .72rem;
-            font-weight: 700;
-            padding: .15rem .6rem;
-            border-radius: 50px;
-            margin-left: .3rem;
-            vertical-align: middle;
-        }
-
-        /* ============================
-           レスポンシブ
-        ============================ */
-        @media (max-width: 700px) {
-            .hero h1 {
-                font-size: 1.7rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<title>Mikhail Pavlov（パブロフ ミハイル）｜ゲームプログラマー ポートフォリオ — Unity 6 / C# / Mirror / C++ / DirectX 11｜2027年卒</title>
+<meta name="description" content="2027年3月 HAL東京 ゲームプログラム学科 卒業見込のゲームプログラマー志望。Mirror を用いたサーバー権威型ゲームプレイ設計、計測条件を公開した描画最適化（Draw Call 286→88）、Unity非依存アセンブリへのドメインロジック分離とユニットテスト、C++/DirectX 11 の自作3Dエンジン。全作品ソースコード公開。">
+<meta name="author" content="Mikhail Pavlov">
+<meta name="keywords" content="ゲームプログラマー,Unityエンジニア,クライアントエンジニア,2027年卒,新卒,ポートフォリオ,Unity 6,C#,Mirror Networking,Zenject,ScriptableObject,URP,ユニットテスト,描画最適化,ドローコール削減,C++,DirectX 11,HLSL,Git,Pavlov Mikhail,HAL東京">
+<link rel="canonical" href="https://mikhailroug.github.io/MikhaiPavlovPartfolio/">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Mikhail Pavlov — ゲームプログラマー ポートフォリオ">
+<meta property="og:title" content="Mikhail Pavlov｜ゲームプログラマー ポートフォリオ（Unity 6 / Mirror / C++ / DirectX 11）">
+<meta property="og:description" content="サーバー権威型のゲームプレイ設計、計測条件つきの描画最適化、Unity非依存のテスト可能なドメイン設計。2027年3月卒業見込。">
+<meta property="og:url" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/">
+<meta property="og:image" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mikhail Pavlov — ゲームプログラマー ポートフォリオ">
+<meta name="twitter:description" content="Unity 6 + Mirror のサーバー権威型ゲームプレイ設計と、C++ / DirectX 11 の自作エンジン。2027年卒・ゲームプログラマー志望。">
+<meta name="twitter:image" content="https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/#person",
+      "name": "Mikhail Pavlov",
+      "alternateName": ["パブロフ ミハイル", "ミハイル・パブロフ"],
+      "jobTitle": "ゲームプログラマー（Unity / C++）",
+      "description": "Mirror を用いたサーバー権威型のゲームプレイ設計と、C++ / DirectX 11 による自作3Dレンダリングの両方を経験したゲームプログラマー志望の学生。2027年3月 HAL東京 ゲームプログラム学科 卒業見込。",
+      "email": "mailto:pavlovmikhailn1@gmail.com",
+      "url": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/",
+      "image": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/MikhailPavlov_2_files/maxresdefault.jpg",
+      "sameAs": ["https://github.com/mikhailroug"],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "HAL東京 ゲームプログラム学科（昼間部2年制）",
+        "address": { "@type": "PostalAddress", "addressLocality": "新宿区", "addressRegion": "東京都", "addressCountry": "JP" }
+      },
+      "knowsLanguage": [
+        { "@type": "Language", "name": "Japanese", "alternateName": "ja" },
+        { "@type": "Language", "name": "English", "alternateName": "en" },
+        { "@type": "Language", "name": "Russian", "alternateName": "ru" }
+      ],
+      "knowsAbout": [
+        "Unity 6", "C#", "Mirror Networking", "サーバー権威型ゲームプレイ設計",
+        "描画最適化 / ドローコール削減", "ユニットテスト / NUnit", "アセンブリ分割",
+        "ScriptableObject データ駆動設計", "Zenject / 依存性注入",
+        "C++", "DirectX 11", "HLSL", "Git"
+      ],
+      "seeks": { "@type": "Demand", "name": "ゲームプログラマー / Unityクライアントエンジニア（2027年新卒・インターン）" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/#page",
+      "name": "Mikhail Pavlov — ゲームプログラマー ポートフォリオ",
+      "inLanguage": "ja",
+      "mainEntity": { "@id": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/#person" }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Make-a-Farm — マルチプレイヤー農場ゲーム",
+      "author": { "@id": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/#person" },
+      "codeRepository": "https://github.com/MikhailRouG/Make-a-Farm-Unity-Project",
+      "programmingLanguage": "C#",
+      "runtimePlatform": "Unity 6 (6000.3) / Universal Render Pipeline",
+      "about": "Mirror の Host/Client 構成で、ゲームプレイの状態変更をすべてサーバー側で処理するアーキテクチャを実装。テクスチャ統合・メッシュ結合・GPUインスタンシングにより Draw Call を 286 から 88 へ削減。インベントリのドメインロジックを Unity 非依存アセンブリに分離しユニットテストで検証。",
+      "keywords": "Unity, C#, Mirror Networking, Zenject, ScriptableObject, URP, ユニットテスト, 描画最適化, GPUインスタンシング"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Tetris Shooter — ハイブリッドパズルシューター（4名チーム）",
+      "author": { "@id": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/#person" },
+      "codeRepository": "https://github.com/MikhailRouG/Tetris-Shooter",
+      "programmingLanguage": "C#",
+      "runtimePlatform": "Unity 6 / Universal Render Pipeline",
+      "about": "4名のゲームジャムチームで開発したパズル×シューティング。Unity側の基盤整備と統合を担当し、メンバーがロジック実装に集中できる分担とGit運用を設計。",
+      "keywords": "Unity, C#, チーム開発, ゲームジャム, VFX, Git"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Slime Invasion 3D — 自作エンジン3Dシューティング",
+      "author": { "@id": "https://mikhailroug.github.io/MikhaiPavlovPartfolio/#person" },
+      "codeRepository": "https://github.com/MikhailRouG/Slime-Invasion-3D-VS",
+      "programmingLanguage": "C++",
+      "runtimePlatform": "Windows / DirectX 11",
+      "about": "ゲームエンジンを使わず C++ と DirectX 11 のみで実装した3Dシューティング。描画パイプライン・HLSLライティング・GPUスキニング・当たり判定を自前実装。",
+      "keywords": "C++, DirectX 11, HLSL, Assimp, レンダリングパイプライン, スキニング"
+    }
+  ]
+}
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-dark:#14352a; --green-mid:#2d6a4f; --green-light:#40916c;
+  --green-pale:#dff3e6; --green-tint:#f2faf4;
+  --yellow:#f4d35e; --amber:#96650a; --amber-bg:#fdf5e0;
+  --cream:#fdfcf5; --white:#fff;
+  --ink:#16181d; --ink-mid:#3d4557; --ink-soft:#667089; --line:#e3e8e4;
+  --violet:#5b3a9e; --violet-soft:#f3effc;
+  --rust:#a03225; --rust-soft:#fdf0ee;
+  --radius:14px; --radius-sm:8px;
+  --shadow:0 1px 2px rgba(20,53,42,.05), 0 8px 28px rgba(20,53,42,.07);
+  --shadow-sm:0 1px 3px rgba(20,53,42,.08);
+  --t:.2s ease;
+}
+
+html { scroll-behavior:smooth; scroll-padding-top:72px; -webkit-text-size-adjust:100%; }
+body {
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;
+  background:var(--cream); color:var(--ink); line-height:1.85; font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:var(--green-mid); text-decoration:none; }
+a:hover { text-decoration:underline; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--amber); outline-offset:3px; border-radius:4px; }
+h1,h2,h3,h4,h5 { line-height:1.45; font-weight:700; }
+code {
+  background:var(--green-pale); color:var(--green-dark); padding:.1em .4em; border-radius:4px;
+  font-family:ui-monospace,"SFMono-Regular","Consolas",monospace; font-size:.86em; word-break:break-all;
+}
+.skip-link { position:absolute; left:-9999px; top:0; z-index:999; background:var(--yellow); color:var(--green-dark); padding:.7rem 1.2rem; font-weight:700; }
+.skip-link:focus { left:0; }
+
+/* ---- placeholder marker for values you must measure ---- */
+.todo {
+  display:inline-block; background:var(--amber-bg); border:1px dashed var(--amber);
+  color:var(--amber); font-weight:700; font-size:.86em; padding:0 .5em; border-radius:4px;
+}
+
+/* ---------- Nav ---------- */
+nav {
+  position:sticky; top:0; z-index:100; background:rgba(20,53,42,.97); backdrop-filter:blur(8px);
+  padding:.8rem 1.6rem; display:flex; justify-content:space-between; align-items:center; gap:1rem;
+  box-shadow:0 1px 0 rgba(255,255,255,.08), 0 4px 20px rgba(0,0,0,.22);
+}
+nav .logo { color:var(--yellow); font-size:1rem; font-weight:700; letter-spacing:.04em; white-space:nowrap; }
+nav .logo small { font-size:.72rem; font-weight:400; opacity:.65; margin-left:.4rem; }
+#nav-menu { list-style:none; display:flex; gap:1.35rem; flex-wrap:wrap; }
+#nav-menu a { color:var(--green-pale); font-size:.86rem; transition:color var(--t); }
+#nav-menu a:hover { color:var(--yellow); text-decoration:none; }
+
+.nav-toggle {
+  display:none; width:42px; height:38px; background:transparent;
+  border:1px solid rgba(216,243,220,.4); border-radius:var(--radius-sm);
+  cursor:pointer; padding:9px 9px; flex-direction:column; justify-content:space-between;
+}
+.nav-toggle span { display:block; height:2px; background:var(--green-pale); border-radius:2px; transition:transform var(--t), opacity var(--t); }
+nav.open .nav-toggle span:nth-child(1) { transform:translateY(9px) rotate(45deg); }
+nav.open .nav-toggle span:nth-child(2) { opacity:0; }
+nav.open .nav-toggle span:nth-child(3) { transform:translateY(-9px) rotate(-45deg); }
+
+/* ---------- Hero ---------- */
+.hero {
+  background:linear-gradient(140deg,#10281f 0%,var(--green-dark) 42%,var(--green-mid) 100%);
+  color:var(--white); padding:4rem 1.6rem 3.2rem; position:relative; overflow:hidden;
+}
+.hero::before { content:"🌾"; position:absolute; font-size:17rem; opacity:.05; top:-3rem; right:-3rem; user-select:none; pointer-events:none; }
+.hero-inner { max-width:1000px; margin:0 auto; position:relative; }
+.hero .eyebrow {
+  display:inline-block; background:rgba(244,211,94,.16); border:1px solid rgba(244,211,94,.5);
+  color:var(--yellow); font-size:.78rem; font-weight:700; letter-spacing:.06em;
+  padding:.25rem .9rem; border-radius:50px; margin-bottom:1rem;
+}
+.hero h1 { font-size:clamp(1.9rem,5vw,2.6rem); letter-spacing:.02em; }
+.hero h1 .ja { display:block; font-size:.9rem; font-weight:400; letter-spacing:.18em; color:var(--yellow); opacity:.9; margin-top:.45rem; }
+.hero .role { font-size:1.05rem; font-weight:600; color:var(--yellow); margin:.7rem 0 1.4rem; }
+
+.claims { list-style:none; display:grid; gap:.6rem; max-width:660px; margin-bottom:1.9rem; }
+.claims li { font-size:.93rem; padding-left:1.5rem; position:relative; opacity:.94; }
+.claims li::before { content:"▸"; position:absolute; left:0; color:var(--yellow); font-weight:700; }
+.claims b { color:var(--yellow); font-weight:700; }
+
+.hero-links { display:flex; gap:.7rem; flex-wrap:wrap; }
+.btn { display:inline-block; padding:.6rem 1.4rem; border-radius:50px; font-size:.88rem; font-weight:700; transition:transform var(--t), box-shadow var(--t); }
+.btn:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.22); text-decoration:none; }
+.btn-primary { background:var(--yellow); color:var(--green-dark); }
+.btn-outline { background:rgba(255,255,255,.06); border:1.5px solid rgba(216,243,220,.55); color:var(--green-pale); }
+
+/* ---------- Sections ---------- */
+section { padding:4rem 1.6rem; }
+.container { max-width:1000px; margin:0 auto; }
+.section-title { font-size:1.6rem; color:var(--green-dark); text-align:center; margin-bottom:.2rem; }
+.section-title span { display:block; font-size:.76rem; font-weight:700; color:var(--ink-soft); letter-spacing:.16em; text-transform:uppercase; margin-bottom:.4rem; }
+.section-lead { text-align:center; color:var(--ink-soft); font-size:.9rem; max-width:600px; margin:0 auto 2.4rem; }
+.divider { width:46px; height:4px; background:var(--yellow); border-radius:2px; margin:.9rem auto 1.3rem; }
+.table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:var(--radius); background:var(--white); }
+
+/* ---------- Intro ---------- */
+#intro { background:var(--white); border-bottom:1px solid var(--line); }
+#intro .container { max-width:780px; }
+#intro p { color:var(--ink-mid); font-size:.96rem; }
+#intro p + p { margin-top:.9rem; }
+
+/* ---------- Projects ---------- */
+#projects { background:var(--cream); }
+.project-card { background:var(--white); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); margin-bottom:2.6rem; }
+.project-header {
+  background:linear-gradient(135deg,var(--green-dark),var(--green-mid)); color:var(--white);
+  padding:1.8rem; display:flex; justify-content:space-between; align-items:flex-start; gap:1.3rem; flex-wrap:wrap;
+}
+.project-header .headline { flex:1 1 440px; min-width:0; }
+.project-type { display:inline-block; font-size:.74rem; font-weight:700; background:var(--yellow); color:var(--green-dark); padding:.16rem .8rem; border-radius:50px; margin-bottom:.65rem; }
+.project-header h3 { font-size:1.3rem; margin-bottom:.5rem; }
+.project-header .pitch { font-size:.89rem; opacity:.9; }
+.project-actions { display:flex; flex-direction:column; gap:.5rem; flex:0 0 auto; }
+.project-actions .btn { text-align:center; white-space:nowrap; }
+.tags { display:flex; gap:.42rem; flex-wrap:wrap; margin-top:.85rem; }
+.tag { background:rgba(255,255,255,.14); color:var(--green-pale); font-size:.73rem; padding:.16rem .68rem; border-radius:50px; border:1px solid rgba(255,255,255,.2); }
+
+.project-body { padding:1.8rem; }
+.project-body > h4 { font-size:.94rem; color:var(--green-dark); margin:2rem 0 1rem; padding-bottom:.45rem; border-bottom:2px solid var(--green-pale); }
+.project-body > h4:first-child { margin-top:0; }
+
+.role-line { background:var(--green-tint); border:1px solid var(--green-pale); border-radius:var(--radius-sm); padding:.8rem 1.1rem; font-size:.87rem; color:var(--ink-mid); margin-bottom:1.5rem; }
+.role-line b { color:var(--green-dark); }
+
+.case { background:var(--white); border:1px solid var(--line); border-left:4px solid var(--green-light); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:1.1rem 1.3rem; margin-bottom:1rem; }
+.case .label { display:inline-block; font-size:.69rem; font-weight:700; letter-spacing:.1em; color:var(--white); background:var(--green-mid); padding:.08rem .6rem; border-radius:4px; margin-bottom:.5rem; }
+.case h5 { font-size:.95rem; color:var(--green-dark); margin-bottom:.5rem; }
+.case dl { display:grid; grid-template-columns:74px 1fr; gap:.45rem .9rem; font-size:.88rem; }
+.case dt { font-weight:700; color:var(--ink-soft); font-size:.79rem; padding-top:.12rem; }
+.case dd { color:var(--ink-mid); }
+.case dd.result { color:var(--green-dark); font-weight:600; }
+.case .src { margin-top:.75rem; font-size:.79rem; }
+.case .src a { font-family:ui-monospace,"Consolas",monospace; word-break:break-all; }
+
+/* measurement table */
+.measure { margin-top:1rem; border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden; }
+.measure caption { background:var(--green-dark); color:var(--white); font-size:.78rem; font-weight:700; letter-spacing:.05em; padding:.5rem .9rem; text-align:left; }
+.measure table { width:100%; border-collapse:collapse; font-size:.82rem; min-width:420px; }
+.measure th { text-align:left; padding:.45rem .9rem; color:var(--green-dark); background:var(--green-tint); font-weight:700; white-space:nowrap; border-bottom:1px solid var(--line); width:44%; }
+.measure td { padding:.45rem .9rem; color:var(--ink-mid); border-bottom:1px solid var(--line); }
+.measure tr:last-child th, .measure tr:last-child td { border-bottom:none; }
+.measure-wrap { overflow-x:auto; }
+
+.feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(245px,1fr)); gap:.85rem; }
+.feature-item { background:var(--green-tint); border:1px solid var(--green-pale); border-radius:var(--radius-sm); padding:.9rem 1.1rem; }
+.feature-item h5 { font-size:.87rem; color:var(--green-dark); margin-bottom:.28rem; }
+.feature-item p { font-size:.81rem; color:var(--ink-soft); line-height:1.7; }
+
+.pattern-table { width:100%; border-collapse:collapse; font-size:.85rem; min-width:540px; }
+.pattern-table th { background:var(--green-mid); color:var(--white); padding:.6rem 1rem; text-align:left; }
+.pattern-table td { padding:.6rem 1rem; border-bottom:1px solid var(--line); color:var(--ink-mid); vertical-align:top; background:var(--white); }
+.pattern-table tr:nth-child(even) td { background:var(--green-tint); }
+
+.media { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+.media img { width:100%; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; }
+.video-frame { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius-sm); box-shadow:var(--shadow); margin-bottom:1.2rem; background:var(--green-dark); }
+.video-frame a { position:absolute; inset:0; display:block; }
+.video-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+.video-frame .play {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:72px; height:50px;
+  background:rgba(20,53,42,.92); border:2px solid var(--yellow); border-radius:14px;
+  display:flex; align-items:center; justify-content:center; transition:transform var(--t);
+}
+.video-frame:hover .play { transform:translate(-50%,-50%) scale(1.08); }
+
+.limits { background:var(--green-tint); border:1px dashed var(--green-light); border-radius:var(--radius-sm); padding:1.2rem 1.4rem; margin-top:1.8rem; }
+.limits h5 { font-size:.92rem; color:var(--green-dark); margin-bottom:.7rem; }
+.limits ul { list-style:none; display:grid; gap:.6rem; }
+.limits li { font-size:.85rem; color:var(--ink-mid); padding-left:1.3rem; position:relative; }
+.limits li::before { content:"▸"; position:absolute; left:0; color:var(--green-light); font-weight:700; }
+.limits li b { color:var(--green-dark); }
+
+.arch-box { background:#0e2119; border-radius:var(--radius-sm); padding:1.2rem 1.4rem; font-family:ui-monospace,"Consolas",monospace; color:var(--green-pale); font-size:.81rem; line-height:1.8; overflow-x:auto; }
+.arch-box .comment { color:#7ee8a2; opacity:.75; }
+
+.theme-violet .project-header { background:linear-gradient(135deg,#2a1a52,var(--violet)); }
+.theme-violet .project-type { background:#c3b0e8; color:#1d1230; }
+.theme-violet .project-body > h4 { color:var(--violet); border-bottom-color:#ddd2f3; }
+.theme-violet .case { border-left-color:#8b6dcc; }
+.theme-violet .case .label { background:var(--violet); }
+.theme-violet .case h5, .theme-violet .case dd.result { color:var(--violet); }
+.theme-violet .role-line, .theme-violet .feature-item, .theme-violet .limits { background:var(--violet-soft); border-color:#d5c8ef; }
+.theme-violet .role-line b, .theme-violet .feature-item h5, .theme-violet .limits h5, .theme-violet .limits li b { color:var(--violet); }
+.theme-violet .limits { border-style:dashed; border-color:#b9a4e6; }
+.theme-violet .limits li::before { color:#8b6dcc; }
+
+.theme-rust .project-header { background:linear-gradient(135deg,#47100b,var(--rust)); }
+.theme-rust .project-type { background:#f0a89e; color:#3a0d09; }
+.theme-rust .project-body > h4 { color:var(--rust); border-bottom-color:#f6d5d0; }
+.theme-rust .case { border-left-color:#d1685a; }
+.theme-rust .case .label { background:var(--rust); }
+.theme-rust .case h5, .theme-rust .case dd.result { color:var(--rust); }
+.theme-rust .role-line, .theme-rust .feature-item { background:var(--rust-soft); border-color:#eec6bf; }
+.theme-rust .role-line b, .theme-rust .feature-item h5 { color:var(--rust); }
+
+/* ---------- Skills ---------- */
+#skills { background:var(--white); }
+.tier { display:grid; grid-template-columns:130px 1fr; gap:1.2rem; align-items:start; padding:1.2rem 0; border-bottom:1px solid var(--line); }
+.tier:last-child { border-bottom:none; }
+.tier-name { font-size:.9rem; font-weight:700; color:var(--green-dark); }
+.tier-name small { display:block; font-size:.76rem; font-weight:400; color:var(--ink-soft); margin-top:.15rem; line-height:1.6; }
+.chips { display:flex; flex-wrap:wrap; gap:.45rem; }
+.chip { font-size:.83rem; padding:.22rem .8rem; border-radius:50px; border:1px solid var(--line); background:var(--green-tint); color:var(--ink-mid); }
+.tier-core .chip { background:var(--green-mid); color:var(--white); border-color:var(--green-mid); font-weight:600; }
+.tier-add .chip { background:var(--green-pale); color:var(--green-dark); border-color:var(--green-pale); }
+
+/* ---------- Status ---------- */
+#status { background:var(--cream); }
+.status-list { list-style:none; display:grid; gap:.7rem; max-width:780px; margin:0 auto; }
+.status-list li { display:flex; gap:.9rem; align-items:baseline; background:var(--white); border:1px solid var(--line); border-radius:var(--radius-sm); padding:.85rem 1.1rem; font-size:.89rem; color:var(--ink-mid); }
+.st { flex:0 0 auto; font-size:.72rem; font-weight:700; letter-spacing:.05em; padding:.12rem .65rem; border-radius:50px; white-space:nowrap; }
+.st-done { background:var(--green-mid); color:var(--white); }
+.st-next { background:var(--amber-bg); color:var(--amber); border:1px solid #e6cd94; }
+.st-learn { background:#eef0f4; color:var(--ink-soft); }
+
+.history { max-width:780px; margin:2.2rem auto 0; font-size:.87rem; color:var(--ink-mid); }
+.history dt { font-weight:700; color:var(--green-dark); float:left; width:120px; clear:left; }
+.history dd { margin-left:120px; margin-bottom:.45rem; }
+
+/* ---------- English ---------- */
+#english { background:var(--white); border-top:1px solid var(--line); }
+#english .container { max-width:760px; }
+.en-body { font-family:system-ui,"Segoe UI",sans-serif; font-size:.9rem; color:var(--ink-mid); line-height:1.8; }
+.en-body ul { padding-left:1.2rem; margin-top:.6rem; }
+.en-body li { margin-bottom:.35rem; }
+
+/* ---------- Contact ---------- */
+#contact { background:linear-gradient(135deg,var(--green-dark),var(--green-mid)); color:var(--white); text-align:center; }
+#contact .section-title { color:var(--yellow); }
+#contact .section-title span { color:rgba(255,255,255,.72); }
+.contact-facts {
+  max-width:640px; margin:0 auto 1.6rem; font-size:.86rem; opacity:.9;
+  border-top:1px solid rgba(255,255,255,.2); border-bottom:1px solid rgba(255,255,255,.2); padding:.8rem 0;
+}
+.contact-text { max-width:560px; margin:0 auto 1.8rem; opacity:.92; font-size:.93rem; }
+.contact-links { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
+.contact-link { display:inline-flex; align-items:center; gap:.5rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:var(--white); padding:.7rem 1.4rem; border-radius:50px; font-size:.89rem; transition:background var(--t); }
+.contact-link:hover { background:rgba(255,255,255,.2); text-decoration:none; }
+
+footer { background:#0e2119; color:var(--green-pale); text-align:center; padding:1.5rem; font-size:.79rem; opacity:.85; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:760px) {
+  nav { position:sticky; }
+  .nav-toggle { display:flex; }
+  #nav-menu {
+    display:none; position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; gap:0; background:rgba(20,53,42,.99);
+    padding:.5rem 1.6rem 1rem; box-shadow:0 12px 24px rgba(0,0,0,.3);
+  }
+  nav.open #nav-menu { display:flex; }
+  #nav-menu li { border-top:1px solid rgba(255,255,255,.1); }
+  #nav-menu a { display:block; padding:.75rem 0; font-size:.92rem; }
+
+  section { padding:3rem 1.2rem; }
+  .hero { padding:3rem 1.2rem 2.6rem; }
+  .project-header, .project-body { padding:1.3rem; }
+  .case dl { grid-template-columns:1fr; gap:.1rem .5rem; }
+  .case dt { margin-top:.5rem; }
+  .project-actions { width:100%; }
+  .tier { grid-template-columns:1fr; gap:.6rem; }
+  .history dt { float:none; width:auto; }
+  .history dd { margin-left:0; margin-bottom:.9rem; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  nav, .hero-links, .skip-link, .video-frame .play { display:none !important; }
+  body { background:#fff; font-size:10.5pt; line-height:1.6; }
+  section { padding:1.2rem 0; page-break-inside:avoid; }
+  .hero { background:#fff !important; color:#000 !important; padding:0 0 1rem; }
+  .hero::before { display:none; }
+  .hero h1, .hero .role, .claims b { color:#14352a !important; }
+  .hero .eyebrow { background:#f2f2f2 !important; color:#000 !important; border-color:#ccc !important; }
+  .claims li::before { color:#14352a !important; }
+  .project-header, #contact, .arch-box { background:#f4f4f4 !important; color:#000 !important; }
+  .project-header h3, .project-header .pitch, #contact .section-title, .contact-link, .contact-facts { color:#000 !important; }
+  .tag, .chip, .tier-core .chip { background:#f2f2f2 !important; color:#333 !important; border-color:#999 !important; }
+  .project-card, .case, .feature-item { page-break-inside:avoid; box-shadow:none; }
+  a { color:#14352a !important; text-decoration:underline; }
+  a[href^="http"]::after { content:" (" attr(href) ")"; font-size:8pt; color:#555; word-break:break-all; }
+}
+</style>
 </head>
 
 <body>
+<a class="skip-link" href="#main">本文へスキップ</a>
 
-    <!-- ========== ナビゲーション ========== -->
-    <nav>
-        <div class="logo"> Mikhail Pavlov <span style="font-size:.75rem; font-weight:400; opacity:.7;">ミハイル・パブロフ</span></div>
-        <ul>
-            <li><a href="#about">自己紹介</a></li>
-            <li><a href="#skills">スキル</a></li>
-            <li><a href="#project">プロジェクト</a></li>
-            <li><a href="#contact">連絡先</a></li>
-        </ul>
-    </nav>
+<nav id="site-nav">
+  <div class="logo">Mikhail Pavlov<small>パブロフ ミハイル</small></div>
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="メニューを開閉">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li><a href="#projects">制作物</a></li>
+    <li><a href="#skills">スキル</a></li>
+    <li><a href="#status">現在の取り組み</a></li>
+    <li><a href="#contact">連絡先</a></li>
+  </ul>
+</nav>
 
-    <!-- ========== ヒーロー ========== -->
-    <header class="hero">
-        <h1>Mikhail Pavlov<br><span style="font-size:1rem; font-weight:400; letter-spacing:.15em; color:var(--yellow); opacity:.9;">ミハイル パブロフ</span></h1>
-        <p class="subtitle">ゲームエンジニア / Unity &amp; C++ Developer</p>
-        <p class="tagline">
-            Unity・C# によるマルチプレイヤーゲームと、C++・DirectX 11 による独自エンジン開発の両方を手がけるゲームエンジニアです。<br>
-            ネットワーク同期・ECS・SQLデータ管理からグラフィックスプログラミングまで幅広く対応できます。
-        </p>
-        <div class="hero-links">
-            <a class="btn btn-primary" href="#project">プロジェクトを見る</a>
-            <a class="btn btn-outline" href="https://github.com/mikhailroug" target="_blank">GitHub</a>
-            <a class="btn btn-outline" href="#contact">連絡する</a>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">2027年3月 卒業見込 ／ ゲームプログラマー職 志望</p>
+    <h1>Mikhail Pavlov<span class="ja">パブロフ ミハイル</span></h1>
+    <p class="role">ゲームプログラマー — Unity 6 / C# ・ C++ / DirectX 11</p>
+
+    <ul class="claims">
+      <li>Mirror を用いて、<b>ゲームプレイの状態変更をすべてサーバー側で処理するアーキテクチャ</b>を設計・実装しました</li>
+      <li><b>ドメインロジックを Unity 非依存アセンブリに分離し、テスト可能な形</b>にしました</li>
+      <li>計測を起点に描画を最適化し、<b>Draw Call を 286 → 88（−69%）</b>に削減しました（計測条件を公開しています）</li>
+    </ul>
+
+    <div class="hero-links">
+      <a class="btn btn-primary" href="#projects">制作物を見る</a>
+      <a class="btn btn-outline" href="https://www.youtube.com/watch?v=x4QJLfxhtf4" target="_blank" rel="noopener">▶ プレイ動画</a>
+      <a class="btn btn-outline" href="https://github.com/mikhailroug" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ INTRO ============ -->
+<section id="intro">
+  <div class="container">
+    <p>
+      HAL東京 ゲームプログラム学科（2027年3月卒業見込）でゲームプログラミングを学んでいます。
+      「動くものを作る」ところで止めず、<strong>数値で測ってから直す</strong>ことと、
+      <strong>あとから壊れていないと確認できる形に設計する</strong>ことを大切にしています。
+    </p>
+    <p>
+      Unity では Mirror を使ったマルチプレイヤーのゲームプレイ設計と描画最適化に取り組み、
+      その手前で C++ / DirectX 11 を使ってレンダリングをゼロから書いた経験があります。
+      エンジンの内側で起きていることを踏まえた上で Unity を扱えることが強みです。
+      3作品すべてソースコードを公開しているので、判断の根拠まで見ていただけます。
+    </p>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title"><span>Projects</span>制作物</h2>
+    <div class="divider"></div>
+    <p class="section-lead">「課題 → アプローチ → 結果」の形で記載し、該当するソースコードに直接リンクしています。</p>
+
+    <!-- ===== Make-a-Farm ===== -->
+    <article class="project-card">
+      <div class="project-header">
+        <div class="headline">
+          <span class="project-type">個人開発 ／ 主力作品</span>
+          <h3>🌾 Make-a-Farm — マルチプレイヤー農場ゲーム</h3>
+          <p class="pitch">
+            Unity 6 + Mirror で、複数プレイヤーが同じ畑を共有する農場ゲームを個人開発しました。
+            サーバー権威型のゲームプレイ設計・計測に基づく描画最適化・テスト可能なドメイン設計の3点が中心です。
+          </p>
+          <div class="tags">
+            <span class="tag">Unity 6000.3</span><span class="tag">C#</span><span class="tag">Mirror</span>
+            <span class="tag">Zenject</span><span class="tag">URP 17.3</span><span class="tag">NUnit</span>
+          </div>
         </div>
-    </header>
-
-    <!-- ========== 自己紹介 ========== -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">
-                <span>ABOUT ME</span>自己紹介
-            </h2>
-            <div class="divider"></div>
-
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>
-                        ゲーム開発に情熱を持つエンジニアです。
-                        <strong>Unity / C#</strong> によるマルチプレイヤーゲーム開発と、
-                        <strong>C++ / DirectX 11</strong> による独自レンダリングエンジン開発の両軸で
-                        実践的な経験を積んでいます。
-                    </p>
-                    <p>
-                        <strong>Mirror Networking</strong> を用いたサーバー権威型アーキテクチャを実践し、
-                        ネットワーク上でのインベントリ同期・プレイヤー生成・オブジェクト管理など
-                        オンラインゲームの核となる技術を習得しています。また <strong>Unity ECS (DOTS)</strong>
-                        を活用した高パフォーマンスな設計にも取り組んでいます。
-                    </p>
-                    <p>
-                        <strong>SQLデータベース</strong> を用いたゲームデータの永続化・管理も経験しており、
-                        依存性注入 (Zenject)・ScriptableObject・インターフェース設計を組み合わせた
-                        データドリブンなゲーム開発を実践しています。
-                    </p>
-                    <p>
-                        チームへの貢献を大切にし、読みやすいコード・明確なアーキテクチャ設計を
-                        常に意識しながら開発を行っています。
-                    </p>
-                </div>
-
-                <div class="about-facts">
-                    <div class="fact-card">
-                        <div class="label">専門分野</div>
-                        <div class="value">Unityマルチプレイヤーゲーム開発</div>
-                    </div>
-                    <div class="fact-card">
-                        <div class="label">所属</div>
-                        <div class="value">HAL東京 昼間部2年制課程 ゲームプログラム学科<br><span style="font-weight:400; font-size:.85rem; color:var(--text-mid);">2025年4月 入学 ／ 2027年3月 卒業見込（2027年卒 新卒）</span></div>
-                    </div>
-                    <div class="fact-card">
-                        <div class="label">主要言語</div>
-                        <div class="value">C# / C++ / SQL / .Net</div>
-                    </div>
-                    <div class="fact-card">
-                        <div class="label">語学</div>
-                        <div class="value">日本語（日常会話〜ビジネスレベル）<br><span style="font-weight:400; font-size:.85rem; color:var(--text-mid);">HAL東京にて日本語による授業を履修 ／ 英語・ロシア語（母語）</span></div>
-                    </div>
-                    <div class="fact-card">
-                        <div class="label">ゲームエンジン・環境</div>
-                        <div class="value">Unity 6 (URP / ECS) / DirectX 11</div>
-                    </div>
-                    <div class="fact-card">
-                        <div class="label">得意な分野</div>
-                        <div class="value">ネットワーク同期 / グラフィックス / ECS設計 / DB管理</div>
-                    </div>
-                    <div class="fact-card">
-                        <div class="label">求めるポジション</div>
-                        <div class="value">Unityエンジニア / ゲームプログラマー</div>
-                    </div>
-                </div>
-            </div>
+        <div class="project-actions">
+          <a class="btn btn-primary" href="https://github.com/mikhailroug/Make-a-Farm-Unity-Project" target="_blank" rel="noopener">GitHub →</a>
+          <a class="btn btn-outline" href="https://www.youtube.com/watch?v=x4QJLfxhtf4" target="_blank" rel="noopener">▶ プレイ動画</a>
+          <a class="btn btn-outline" href="https://github.com/MikhailRouG/Make-a-Farm" target="_blank" rel="noopener">🎮 Windows ビルド</a>
         </div>
-    </section>
+      </div>
 
-    <!-- ========== スキル ========== -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">
-                <span>TECHNICAL SKILLS</span>技術スキル
-            </h2>
-            <div class="divider"></div>
+      <div class="project-body">
 
-            <div class="skills-grid">
-
-                <div class="skill-category">
-                    <h3>🎮 ゲームエンジン・コアツール</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Unity 6 (URP)</span>
-                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>C#</span>
-                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Unity Input System</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Shader Graph (URP)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Cinemachine</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>TextMesh Pro / uGUI</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🌐 ネットワーク・アーキテクチャ</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Mirror Networking</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>NetworkBehaviour / SyncVar</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>SyncList / Command / RPC</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>サーバー権威型設計</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Host/Client アーキテクチャ</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🏗️ 設計パターン・ライブラリ</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Zenject (依存性注入)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>ScriptableObject設計</span>
-                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>インターフェース設計</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Factory / Command パターン</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>データドリブン設計</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🗄️ データベース・データ管理</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>SQL (SELECT / JOIN / トランザクション)</span>
-                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>SQLite (ゲームデータ永続化)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>ScriptableObject DB設計</span>
-                            <div class="skill-meta"><span class="skill-level">上級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>データ正規化・スキーマ設計</span>
-                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>⚡ Unity ECS / DOTS</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Entity Component System (ECS)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>ISystem / IJobEntity</span>
-                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Burst Compiler / Job System</span>
-                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>データ指向設計 (DoD)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🖥️ C++ / グラフィックスプログラミング</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>C++ (モダンC++11/17)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>DirectX 11 / Direct3D</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>HLSL (頂点 / ピクセルシェーダー)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Assimp (3Dモデル読み込み)</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>スキンドアニメーション / 衝突検出</span>
-                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skill-category">
-                    <h3>⚙️ 開発ツール・その他</h3>
-                    <ul class="skill-list">
-                        <li>
-                            <span>Git / GitHub</span>
-                            <div class="skill-meta"><span class="skill-level">中級</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
-                        </li>
-                        <li>
-                            <span>Blender (3Dモデル基礎)</span>
-                            <div class="skill-meta"><span class="skill-level">基礎</span><div class="skill-bar"><div class="skill-bar-fill" style="width:50%"></div></div></div>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
+        <div class="role-line">
+          <b>担当：</b>設計・実装・最適化のすべて（個人開発／3Dモデル・サウンドは外部アセット）
+          <b>構成：</b>Mirror の Host/Client 方式（専用サーバー構成ではありません）
         </div>
-    </section>
 
-    <!-- ========== プロジェクト ========== -->
-    <section id="project">
-        <div class="container">
-            <h2 class="section-title">
-                <span>FEATURED PROJECTS</span>主要プロジェクト (3作品)
-            </h2>
-            <div class="divider"></div>
-
-            <!-- ===== 1. Make-a-Farm ===== -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div>
-                        <div class="project-type">個人開発 / ポートフォリオ</div>
-                        <h3>🌾 Make-a-Farm — マルチプレイヤー農場ゲーム</h3>
-                        <p style="opacity:.85; font-size:.9rem;">
-                            Unity 6 + Mirror Networking で実装した、リアルタイムマルチプレイヤー農場ゲームのプロトタイプ。
-                            サーバー権威型ネットワーク設計・依存性注入・インターフェース駆動設計を実践したフルスタック Unity プロジェクト。
-                        </p>
-                        <div class="tags">
-                            <span class="tag">Unity 6</span>
-                            <span class="tag">C#</span>
-                            <span class="tag">Mirror</span>
-                            <span class="tag">Zenject</span>
-                            <span class="tag">Cinemachine</span>
-                            <span class="tag">URP</span>
-                            <span class="tag">New Input System</span>
-                        </div>
-                    </div>
-                    <div style="display:flex; flex-direction:column; gap:.6rem; align-items:stretch;">
-                        <a class="btn btn-primary" href="https://github.com/mikhailroug/Make-a-Farm-Unity-Project" target="_blank" style="text-align:center;">GitHub →</a>
-                        <a class="btn btn-outline" href="https://github.com/MikhailRouG/Make-a-Farm" target="_blank" rel="noopener noreferrer" style="text-align:center; white-space:nowrap;">🎮 Build (Windows) →</a>
-                    </div>
-                </div>
-
-                <div class="project-body">
-
-                    <!-- デモ動画 -->
-                    <div style="margin-bottom:1.5rem;">
-                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow);">
-                            <a href="https://www.youtube.com/watch?v=x4QJLfxhtf4" target="_blank" rel="noopener noreferrer" style="position:absolute; top:0; left:0; width:100%; height:100%; display:block;">
-                                <img src="MikhailPavlov_2_files/maxresdefault.jpg" alt="Make-a-Farm デモ動画" style="width:100%; height:100%; object-fit:cover; display:block;">
-                                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:70px; height:50px; background:rgba(27,67,50,0.9); border-radius:14px; display:flex; align-items:center; justify-content:center; border: 2px solid var(--yellow);">
-                                    <svg viewBox="0 0 24 24" style="width:28px; height:28px; fill:var(--yellow);"><path d="M8 5v14l11-7z"></path></svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- スクリーンショット -->
-                    <div class="screenshots">
-                        <img src="MikhailPavlov_2_files/597943950-34ff16b8-5f28-4ea2-88da-d515deb64e96.gif" alt="ゲームスクリーンショット 1" onerror="this.style.display='none'">
-                        <img src="MikhailPavlov_2_files/597430182-1919b6c8-896f-4ec1-bca1-e77a169cc2bb.gif" alt="ゲームスクリーンショット 2" onerror="this.style.display='none'">
-                    </div>
-
-                    <!-- プロジェクト概要 -->
-                    <p class="project-desc">
-                        本プロジェクトは複数プレイヤーが同一ワールドで農業・取引・乗り物操作を楽しめる農場ゲームです。
-                        ネットワーク越しにリアルタイムでゲーム状態を同期し、クライアント間の一貫性を保つ
-                        <strong>サーバー権威型アーキテクチャ</strong>を採用しています。
-                        農作物の成長タイマー・インベントリ・プレイヤー位置など全ての状態をサーバーが管理します。
-                    </p>
-
-                    <!-- 実装機能 -->
-                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">✅ 実装した主な機能</h4>
-                    <div class="feature-grid">
-                        <div class="feature-item">
-                            <h4>🌐 マルチプレイヤーネットワーク</h4>
-                            <p>Mirror による Host/Client 方式。プレイヤーのスポーン・同期・切断処理を実装。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🌱 農業システム</h4>
-                            <p>種の設置→成長段階の進行→収穫までを完全にネットワーク同期。ゴーストプレビューで配置可否を視覚化。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🎒 ネットワーク同期インベントリ</h4>
-                            <p><code>SyncList&lt;InventorySlot&gt;</code> による9スロットインベントリ。アイテムスタック・消費・UI連動を実装。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🏪 ショップシステム</h4>
-                            <p>Zenject の Factory パターンでショップカードを動的生成。インタラクション起動 UI を実装。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🖱️ インタラクションシステム</h4>
-                            <p>レイキャスト + <code>IInteractable</code> インターフェースによるドア・農作物・ショップ・乗り物の統一操作。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>📦 アイテムデータベース</h4>
-                            <p>ScriptableObject でアイテム定義。Zenject でシーンに注入し ID 検索可能なデータドリブン設計。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🧩 ScriptableObject による拡張性</h4>
-                            <p><strong>植物もエフェクトも ScriptableObject で定義</strong>。成長段階・成長時間・収穫物や、再生するエフェクト・演出は SO のアセットを追加・編集するだけで変更でき、<strong>コードを一切書き換えずに新しい作物やエフェクトを追加</strong>できます。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🚀 描画最適化 (Draw Call削減)</h4>
-                            <p>GPUインスタンシング・Static Batching・動的バッチングを適用。<strong>Draw Call を 286 → 88 に約 70% 削減</strong>し、FPS を 111 → 135 以上に改善。</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>🎮 プレイヤーコントローラ</h4>
-                            <p>カメラ相対移動・スプリント・ジャンプ・アニメーション連動を New Input System で実装。</p>
-                        </div>
-                    </div>
-
-                    <!-- 設計パターン -->
-                    <h4 style="margin-bottom:1rem; color:var(--green-dark);">⚡ 採用した設計パターン</h4>
-                    <table class="pattern-table">
-                        <thead>
-                            <tr>
-                                <th>パターン</th>
-                                <th>適用箇所</th>
-                                <th>目的</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>NetworkBehaviour 継承</strong></td>
-                                <td><code>Plant</code>, <code>Inventory</code>, <code>Player</code></td>
-                                <td>Mirror による自動状態同期の基盤</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Command パターン</strong></td>
-                                <td>全クライアント→サーバー操作</td>
-                                <td>サーバー権威型の一貫したアクション処理</td>
-                            </tr>
-                            <tr>
-                                <td><strong>インターフェース設計</strong></td>
-                                <td><code>IInteractable</code>, <code>IHarvestable</code></td>
-                                <td>インタラクション対象の疎結合化</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Factory パターン (DI)</strong></td>
-                                <td><code>ShopCardUi.Factory</code></td>
-                                <td>ショップカードの実行時動的生成</td>
-                            </tr>
-                            <tr>
-                                <td><strong>ScriptableObject データ</strong></td>
-                                <td><code>ItemConfig</code> 継承ツリー・植物・エフェクト定義</td>
-                                <td>コード変更なしで植物・エフェクト・アイテムを追加/編集できるデータ設計</td>
-                            </tr>
-                            <tr>
-                                <td><strong>描画最適化</strong></td>
-                                <td>GPUインスタンシング / Static Batching</td>
-                                <td>Draw Call 286→88（約70%削減）、FPS 111→135以上</td>
-                            </tr>
-                            <tr>
-                                <td><strong>依存性注入 (Zenject)</strong></td>
-                                <td><code>GameplaySceneInstaller</code></td>
-                                <td>サービスロケーターを排除した疎結合設計</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-            </div><!-- /project-card Make-a-Farm -->
-            <!-- ===== 2. Tetris Shooter (Game Jam) ===== -->
-            <div class="project-card" style="border-top: 4px solid #6c3fb5;">
-                <div class="project-header" style="background: linear-gradient(135deg, #2d1b5e, #6c3fb5);">
-                    <div>
-                        <div class="project-type" style="background:#b39ddb; color:#1a1a2e;">🏆 チーム開発 / ゲームジャム</div>
-                        <h3>🎮 Tetris Shooter — ハイブリッドパズルシューター</h3>
-                        <p style="opacity:.85; font-size:.9rem;">
-                            ゲームジャムで日本人メンバーと共同開発した、テトリスとタレットシューティングを融合させたハイブリッドゲーム。
-                            チーム唯一の Unity 経験者として<strong>ビジュアル・エフェクト・シーン構成全般</strong>を担当。
-                        </p>
-
-                        <!-- チームメンバー -->
-                        <div class="team-badges">
-                            <div class="team-badge highlight">👤 Mikhail  <span class="role-tag">Unity / ビジュアル担当</span></div>
-                        </div>
-
-                        <div class="tags">
-                            <span class="tag">Unity 6</span>
-                            <span class="tag">C#</span>
-                            <span class="tag">URP</span>
-                            <span class="tag">Cartoon FX</span>
-                            <span class="tag">TextMesh Pro</span>
-                            <span class="tag">チーム開発</span>
-                        </div>
-                    </div>
-                    <a class="btn" style="background:#b39ddb; color:#1a1a2e; font-weight:700;" href="https://github.com/MikhailRouG/Tetris-Shooter" target="_blank">GitHub →</a>
-                </div>
-                <div class="screenshots">
-                    <img alt="ゲームスクリーンショット 1" onerror="this.style.display='none'" src="MikhailPavlov_2_files/600486647-3062ac83-c549-4910-81bc-64f94da976cf.gif">
-                </div>
-                <div class="project-body">
-
-                    <!-- プロジェクト概要 -->
-                    <p class="project-desc">
-                        落下するブロックを砲台（タレット）で撃ち抜いてラインを消す、テトリスとシューティングを融合した新感覚パズルゲームです。
-                        ゲームジャム形式で短期間に日本人チームメンバーと協力して開発しました。
-                        チーム内で唯一 Unity を扱えるメンバーとして、<strong>シーン構成・エフェクト・UI アニメーション・ビジュアル全般</strong>を主導しました。
-                    </p>
-
-                    <!-- チームにおける役割 -->
-                    <div style="background:linear-gradient(135deg,#ede7f6,#f3e5f5); border-radius:var(--radius); padding:1.4rem 1.6rem; margin-bottom:2rem; border-left:4px solid #6c3fb5;">
-                        <h4 style="color:#4527a0; margin-bottom:.8rem;">🙋 チームにおける自分の役割</h4>
-                        <ul style="color:var(--text-mid); padding-left:1.2rem; font-size:.9rem; line-height:2.1;">
-                            <li><strong>Unity エンジン全般の管理</strong> — チーム唯一の Unity 経験者として環境構築・プロジェクト設定・Git 連携を担当</li>
-                            <li><strong>ビジュアルエフェクト実装</strong> — Cartoon FX Remaster を活用した爆発・ライン消去・ヒットエフェクトを実装</li>
-                            <li><strong>UIアニメーション</strong> — タイトル画面アニメーション・ボタン演出・スコア表示 UI を構築</li>
-                            <li><strong>シーン・カメラ構成</strong> — 3D 雲・スカイボックス・ライティングなど世界観を作るビジュアル設計</li>
-                            <li><strong>チームサポート</strong> — 他メンバーのコードを Unity に統合し、動作確認・バグ修正を支援</li>
-                        </ul>
-                    </div>
-
-                    <!-- 実装機能 -->
-                    <h4 style="margin-bottom:1rem; color:#4527a0;">✅ ゲームの主な機能</h4>
-                    <div class="feature-grid">
-                        <div class="feature-item" style="border-left-color:#7e57c2;">
-                            <h4>🎯 タレット操作システム</h4>
-                            <p>マウスで砲台を回転・照準。左クリックで弾を発射。ブロックに命中させてラインを消去。</p>
-                        </div>
-                        <div class="feature-item" style="border-left-color:#7e57c2;">
-                            <h4>🧱 テトリス式ブロック管理</h4>
-                            <p>ラインが揃うと消去してスコア加算。ブロックが危険ゾーンに到達するとゲームオーバー。</p>
-                        </div>
-                        <div class="feature-item" style="border-left-color:#7e57c2;">
-                            <h4>🎁 スペシャルブロック</h4>
-                            <p>「プレゼントブロック」を破壊するとボーナスアイテムを獲得。ゲームプレイに変化を加える。</p>
-                        </div>
-                        <div class="feature-item" style="border-left-color:#7e57c2;">
-                            <h4>⚡ パワーアップシステム</h4>
-                            <p>弾のダメージ・速度・特性を変えるアイテムを収集。リロール機能でアイテム再選択も可能。</p>
-                        </div>
-                        <div class="feature-item" style="border-left-color:#7e57c2;">
-                            <h4>✨ ビジュアルエフェクト</h4>
-                            <p>Cartoon FX による爆発・ライン消去エフェクト、タイトルアニメーション、3D 雲背景を実装。</p>
-                        </div>
-                        <div class="feature-item" style="border-left-color:#7e57c2;">
-                            <h4>📈 ステージ進行</h4>
-                            <p>ステージが進むにつれてブロックの落下速度・密度が増加。徐々に難易度が上がる設計。</p>
-                        </div>
-                    </div>
-
-                    <!-- チーム開発で学んだこと -->
-                    <h4 style="margin-bottom:1rem; color:#4527a0;">💬 チーム開発から得た学び</h4>
-                    <div class="arch-box" style="background:#1a0a3d;">
-                        <pre><span class="comment">// ゲームジャム チーム構成</span>
-
-メンバー: Mikhail (自分) + akitakann + Arai-Eito +Mizuno  <span class="comment">← 日本人チームと協働</span>
-
-役割分担:
-  Mikhail     ─── Unity 環境 / ビジュアル / エフェクト /  ゲームロジック
-  akitakann   ─── ゲームロジック / UI 
-  Arai-Eito   ─── ゲームロジック 
-  Mizuno      ─── Audio
-
-コミュニケーション:
-  ✓ Git / GitHub による非同期コラボレーション (33 コミット)
-  ✓ プルリクエストでコードレビュー・統合を実施
-  ✓ 短期間での機能分担と並行開発</pre>
-                    </div>
-
-                </div>
-            </div><!-- /project-card Tetris Shooter -->
-            <!-- ===== 3. Slime Invasion 3D ===== -->
-            <div class="project-card" style="border-top: 4px solid #c0392b;">
-                <div class="project-header" style="background: linear-gradient(135deg, #4a0e0e, #922b21);">
-                    <div>
-                        <div class="project-type" style="background:#ff6b6b; color:#fff;">個人開発 / C++エンジン</div>
-                        <h3>👾 Slime Invasion 3D — 3Dシューティングゲーム</h3>
-                        <p style="opacity:.85; font-size:.9rem;">
-                            Unity を使わず <strong>C++ と DirectX 11 のみ</strong> でゼロから実装した3Dシューティングゲーム。
-                            レンダリングパイプライン・物理・アニメーション・サウンドをすべて独自実装し、
-                            グラフィックスプログラミングの基礎を習得したプロジェクト。
-                        </p>
-                        <div class="tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">DirectX 11</span>
-                            <span class="tag">HLSL</span>
-                            <span class="tag">Assimp</span>
-                            <span class="tag">Visual Studio</span>
-                            <span class="tag">DirectXTex</span>
-                        </div>
-                    </div>
-                    <a class="btn" style="background:#ff6b6b; color:#fff;" href="https://github.com/MikhailRouG/Slime-Invasion-3D-VS" target="_blank">GitHub →</a>
-                </div>
-
-            </div>
-            <div class="screenshots">
-                <img src="MikhailPavlov_2_files/597951268-97f4a34c-63e9-4be2-9031-ad9f2c076fd4.gif" alt="ゲームスクリーンショット 1" onerror="this.style.display='none'">
-            </div>
-            <div class="project-body">
-
-                <!-- プロジェクト概要 -->
-                <p class="project-desc">
-                    スライムが大量に押し寄せる3Dシューティングゲームです。
-                    ゲームエンジンを一切使わず、<strong>Direct3D / HLSL シェーダー / Assimp による3Dモデル読み込み</strong>などを
-                    すべて自前で実装することで、ゲームエンジンの裏側にある技術を深く理解しました。
-                    47コミット・約半年間の継続的な開発を通じて完成させたポートフォリオ作品です。
-                </p>
-
-                <!-- 実装機能 -->
-                <h4 style="margin-bottom:1rem; color:#922b21;">✅ 実装した主な機能</h4>
-                <div class="feature-grid">
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>🖥️ Direct3D レンダリングパイプライン</h4>
-                        <p>頂点バッファ・インデックスバッファ・定数バッファを手動管理。スワップチェーンからフレーム描画まで自前実装。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>💡 ライティングシステム</h4>
-                        <p>Phong反射モデルによるディフューズ・スペキュラ・ポイントライトを HLSL ピクセルシェーダーで実装。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>🎭 スキンドアニメーション</h4>
-                        <p>Assimp のボーンデータを読み込み、頂点シェーダーで骨格アニメーションを計算・適用。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>💥 コリジョン検出</h4>
-                        <p>AABB / 球体ベースの当たり判定を独自実装。弾丸・プレイヤー・敵スライム間の衝突を管理。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>🌟 パーティクルシステム</h4>
-                        <p>ビルボードレンダリングを用いた弾着エフェクト・爆発パーティクルを実装。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>👾 敵スポーンシステム</h4>
-                        <p>ウェーブ形式でスライムを生成・移動・追跡させるAIロジックを C++ で実装。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>🔊 オーディオマネージャー</h4>
-                        <p>Windows Audio API を用いたSE・BGM の再生管理システムを実装。</p>
-                    </div>
-                    <div class="feature-item" style="border-left-color:#e74c3c;">
-                        <h4>📷 カメラシステム</h4>
-                        <p>プレイヤー追従カメラとデバッグカメラを切り替えられる自由視点カメラを実装。</p>
-                    </div>
-                </div>
-
-            </div>
-        </div><!-- /project-card Slime Invasion -->
-        
-    </section>
-
-
-    <!-- ========== 連絡先 ========== -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">
-                <span>GET IN TOUCH</span>連絡先
-            </h2>
-            <div class="divider" style="background:var(--yellow)"></div>
-
-            <p class="contact-text">
-                Unityエンジニアとして日本のゲーム会社でのキャリアを志望しています。<br>
-                インターンシップ・新卒・第二新卒ポジションも歓迎です。<br>
-                ぜひお気軽にご連絡ください！
-            </p>
-
-            <div class="contact-links">
-                <a class="contact-link" href="mailto:pavlovmikhailn1@gmail.com">
-                    ✉️ &nbsp;pavlovmikhailn1@gmail.com
-                </a>
-                <a class="contact-link" href="https://github.com/mikhailroug" target="_blank">
-                    🐙 &nbsp;GitHub: mikhailroug
-                </a>
-            </div>
+        <div class="video-frame">
+          <a href="https://www.youtube.com/watch?v=x4QJLfxhtf4" target="_blank" rel="noopener" aria-label="Make-a-Farm のプレイ動画を YouTube で見る">
+            <img src="MikhailPavlov_2_files/maxresdefault.jpg" alt="Make-a-Farm のプレイ動画サムネイル" onerror="this.style.display='none'">
+            <span class="play"><svg viewBox="0 0 24 24" width="28" height="28" fill="#f4d35e" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span>
+          </a>
         </div>
-    </section>
 
-    <!-- ========== フッター ========== -->
-    <footer>
-        <p>© 2026 Mikhail Pavlov — Game Developer Portfolio (Unity / C++ / DirectX) &nbsp;|&nbsp; 日本での就職活動用ポートフォリオ</p>
-    </footer>
+        <div class="media">
+          <img src="MikhailPavlov_2_files/597943950-34ff16b8-5f28-4ea2-88da-d515deb64e96.gif" alt="種を植えてから収穫するまでのゲームプレイ" onerror="this.style.display='none'">
+          <img src="MikhailPavlov_2_files/597430182-1919b6c8-896f-4ec1-bca1-e77a169cc2bb.gif" alt="インベントリとショップUIの操作" onerror="this.style.display='none'">
+        </div>
 
+        <h4>🎯 技術的な課題と、その解決</h4>
 
+        <div class="case">
+          <span class="label">CASE 01</span>
+          <h5>クライアントを信用しないゲームプレイ設計</h5>
+          <dl>
+            <dt>課題</dt>
+            <dd>複数プレイヤーが同じ畑を共有するため、所持金やアイテムをクライアント側で書き換えられると成立しない。作物の成長も、途中参加したプレイヤーと既存プレイヤーで表示がずれてはいけない。</dd>
+            <dt>アプローチ</dt>
+            <dd>状態を変える処理はすべて <code>[Command]</code> でサーバーへ送り、<code>SyncVar</code> / <code>SyncList</code> の更新はサーバー側だけが行う構成に統一。成長はローカル時間ではなく <code>NetworkTime.time</code> を基準にした期限で管理し、遅れて参加したクライアントでも同じ段階が再現されるようにしました。</dd>
+            <dt>結果</dt>
+            <dd class="result">クライアントは入力送信と描画のみを担当する構成に。購入時にインベントリが満杯だった場合に代金を返金する処理まで含め、状態が食い違わないようにしています。</dd>
+          </dl>
+          <p class="src">コード：
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Player/PlayerShopServer.cs" target="_blank" rel="noopener">PlayerShopServer.cs</a> ／
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/FarmScripts/Plant.cs" target="_blank" rel="noopener">Plant.cs</a>
+          </p>
+        </div>
 
-</body></html>
+        <div class="case">
+          <span class="label">CASE 02</span>
+          <h5>計測を起点にした描画最適化（Draw Call −69%）</h5>
+          <dl>
+            <dt>課題</dt>
+            <dd>畑・柵・建物が増えるにつれてフレームレートが低下。オブジェクトごとに個別のテクスチャとマテリアルを持っていたため、描画命令数とテクスチャメモリの両方が膨らんでいた。</dd>
+            <dt>アプローチ</dt>
+            <dd>Frame Debugger でバッチが分断されている箇所を特定した上で、①複数のテクスチャを1枚のアトラスへ統合してマテリアル数を削減、②自作の <code>MeshCombiner</code> で静的オブジェクトのメッシュを結合、③同一マテリアルになったオブジェクトに GPU インスタンシングを適用、の順で対処しました。</dd>
+            <dt>結果</dt>
+            <dd class="result">Draw Call 286 → 88（−69%）、平均 FPS 111 → 135（フレームタイム換算で約 9.0ms → 7.4ms）。</dd>
+          </dl>
+
+          <div class="measure">
+            <div class="measure-wrap">
+              <table>
+                <caption>計測条件と内訳</caption>
+                <tbody>
+                  <tr><th scope="row">計測環境（CPU / GPU / RAM）</th><td><span class="todo">要記入</span></td></tr>
+                  <tr><th scope="row">ビルド構成</th><td><span class="todo">要記入</span>（Editor / Standalone・Development ビルドの別）</td></tr>
+                  <tr><th scope="row">解像度・品質設定</th><td><span class="todo">要記入</span></td></tr>
+                  <tr><th scope="row">計測シーン・サンプル</th><td>同一シーン・同一設定・同一視点／<span class="todo">要記入</span> フレームの平均</td></tr>
+                  <tr><th scope="row">Draw Calls</th><td>286 → 88（−69%）</td></tr>
+                  <tr><th scope="row">SetPass Calls / Batches</th><td><span class="todo">要記入</span></td></tr>
+                  <tr><th scope="row">平均フレームタイム</th><td>約 9.0ms → 7.4ms（FPS 111 → 135 からの換算）</td></tr>
+                  <tr><th scope="row">CPU / GPU バウンド</th><td><span class="todo">要記入</span></td></tr>
+                  <tr><th scope="row">Total Used Memory / テクスチャメモリ</th><td><span class="todo">要記入</span>（Memory Profiler で計測予定）</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <p class="src">コード：
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/MeshCombiner.cs" target="_blank" rel="noopener">MeshCombiner.cs</a>
+          </p>
+        </div>
+
+        <div class="case">
+          <span class="label">CASE 03</span>
+          <h5>ネットワークコードからドメインロジックを切り離す</h5>
+          <dl>
+            <dt>課題</dt>
+            <dd>インベントリのスタック処理は境界条件（容量オーバー、スタック不可アイテム、部分的な取り出し）でバグが出やすい。しかし <code>SyncList</code> を直接触るコードは Unity を起動しないと動かせず、検証手段が手動プレイしかなかった。</dd>
+            <dt>アプローチ</dt>
+            <dd>ロジックを <code>InventoryModel</code> という純粋な C# クラスへ抽出し、<code>SyncList</code> ではなく <code>IList&lt;InventorySlot&gt;</code> を受け取り、スタック上限は <code>IItemStackRules</code> 越しに取得する形に変更。専用の asmdef で Unity 非依存アセンブリに分離し、テストでは <code>FakeRules</code> を注入しています。</dd>
+            <dt>結果</dt>
+            <dd class="result">Unity を起動せず NUnit でロジックを検証できる構成に。現在テストしている範囲はインベントリのみ（7ケース）で、「容量不足の追加は在庫を一切変更しない」といった不変条件を保証しています。</dd>
+          </dl>
+          <p class="src">コード：
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Inventory/Core/InventoryModel.cs" target="_blank" rel="noopener">InventoryModel.cs</a> ／
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Tests/Tests/InventoryTest.cs" target="_blank" rel="noopener">InventoryTest.cs</a>
+          </p>
+        </div>
+
+        <h4>🧩 主な機能と設計判断</h4>
+        <div class="table-scroll">
+          <table class="pattern-table">
+            <thead><tr><th scope="col">領域</th><th scope="col">やったこと</th><th scope="col">なぜそうしたか</th></tr></thead>
+            <tbody>
+              <tr><td><strong>農業システム</strong></td><td>設置のゴーストプレビュー、成長段階の進行、収穫までをサーバー基準で同期</td><td>設置可否をクライアントで判断させないため</td></tr>
+              <tr><td><strong>インベントリ</strong></td><td>9スロットを <code>SyncList</code> で同期し、ロジックは別アセンブリへ分離</td><td>同期は Mirror に任せ、ルールはテスト可能に保つため</td></tr>
+              <tr><td><strong>ショップ / 経済</strong></td><td>売買をサーバーで検証、作物サイズに応じて売値が変動。UIは Zenject の Factory で動的生成</td><td>価格計算をクライアントに渡さないため</td></tr>
+              <tr><td><strong>インタラクション</strong></td><td>レイキャスト + <code>IInteractable</code> でドア・作物・ショップを統一操作</td><td>対象を増やすときに既存コードを変更しないため</td></tr>
+              <tr><td><strong>アイテム定義</strong></td><td><code>ItemConfig</code> を基底とする ScriptableObject 継承ツリー＋エディタ拡張でDB自動生成</td><td>コンテンツ追加でコードを触らずに済ませるため</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="limits">
+          <h5>🔍 現時点でできていないこと</h5>
+          <ul>
+            <li><b>ネットワークの範囲：</b>Host/Client 構成までで、専用サーバー・再接続処理・レイテンシ／パケットロス下での検証・本格的なチート対策は未対応です。まず Mirror の <code>LatencySimulation</code> で遅延環境の挙動を確認するところから進めます。</li>
+            <li><b>データ永続化：</b>セーブ／ロードが未実装のため、切断すると進行が失われます。再接続時に状態を復元する仕組みが次の実装課題です。</li>
+            <li><b>テスト範囲：</b>インベントリのみ。売買処理を <code>NetworkBehaviour</code> から <code>ShopService</code> として切り出し、対象を広げる予定です。</li>
+            <li><b>アイテムDBの取得経路：</b><code>ItemDatabase.Instance</code> によるシングルトンアクセスが残っています。<code>NetworkServer.Spawn</code> で生成されるオブジェクトが Zenject のコンテキスト外になるためで、<code>ZenjectBinding</code> とカスタムファクトリでの解消を検討しています。</li>
+          </ul>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ===== Tetris Shooter ===== -->
+    <article class="project-card theme-violet">
+      <div class="project-header">
+        <div class="headline">
+          <span class="project-type">🏆 チーム開発 ／ ゲームジャム</span>
+          <h3>🎮 Tetris Shooter — ハイブリッドパズルシューター</h3>
+          <p class="pitch">
+            落下するブロックを砲台で撃ち抜いてラインを消す、テトリス × シューティング。
+            4名チームで短期開発し、私は Unity 側の基盤と統合を引き受けました。
+          </p>
+          <div class="tags">
+            <span class="tag">Unity 6</span><span class="tag">C#</span><span class="tag">URP</span>
+            <span class="tag">VFX</span><span class="tag">Git / PR運用</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a class="btn btn-primary" href="https://github.com/MikhailRouG/Tetris-Shooter" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-body">
+
+        <div class="role-line">
+          <b>担当：</b>Unity プロジェクト基盤・Git運用・統合作業・VFX・UIアニメーション
+          <b>チーム：</b>4名（Mikhail・akitakann・Arai-Eito・Mizuno）
+        </div>
+
+        <div class="media">
+          <img src="MikhailPavlov_2_files/600486647-3062ac83-c549-4910-81bc-64f94da976cf.gif" alt="Tetris Shooter のゲームプレイ" onerror="this.style.display='none'">
+        </div>
+
+        <h4>🎯 チーム開発における課題と、その解決</h4>
+
+        <div class="case">
+          <span class="label">CASE 01</span>
+          <h5>全員が同時に動けるように、作業境界を設計する</h5>
+          <dl>
+            <dt>課題</dt>
+            <dd>チーム内で Unity エディタの経験があるのは自分だけ。全員が同じシーンを編集すると衝突が頻発し、短期のジャムでは統合が間に合わなくなる。</dd>
+            <dt>アプローチ</dt>
+            <dd>「自分が全部やる」ではなく、<strong>メンバーが得意なロジック実装に集中できる形</strong>に環境を整えることを役割にしました。具体的には、プロジェクト設定・シーン構成・<code>.gitignore</code> とブランチ運用を自分が用意し、メンバーにはシーンではなくスクリプト単位で実装してもらう分担に。上がってきたコードのレビューと Unity 側への組み込みを自分が担当しました。</dd>
+            <dt>結果</dt>
+            <dd class="result">4名が並行して作業してもシーン競合を起こさずに完成。プルリクエストでレビューしてから統合する流れがチームに定着しました。</dd>
+          </dl>
+        </div>
+
+        <div class="case">
+          <span class="label">CASE 02</span>
+          <h5>限られた時間で「遊んで気持ちいい」まで持っていく</h5>
+          <dl>
+            <dt>課題</dt>
+            <dd>ゲームロジックが成立しても、フィードバックが乏しいと手応えのない見た目で終わってしまう。</dd>
+            <dt>アプローチ</dt>
+            <dd>他メンバーがロジックを進めている間、自分は着弾・ライン消去・爆発のエフェクト、タイトルとボタンのアニメーション、スコア表示演出、背景の世界観づくりに集中しました。</dd>
+            <dt>結果</dt>
+            <dd class="result">ロジックを変えずに、プレイ時の手応えと完成度の印象を大きく引き上げることができました。</dd>
+          </dl>
+        </div>
+
+        <h4>👥 チーム構成</h4>
+        <div class="arch-box">
+<pre>Mikhail (自分) ─── Unity環境構築 / 統合 / ビジュアル / エフェクト
+akitakann      ─── ゲームロジック / UI
+Arai-Eito      ─── ゲームロジック
+Mizuno         ─── オーディオ
+
+<span class="comment">// 進め方：ブランチ運用 + プルリクエストによるレビューと統合</span></pre>
+        </div>
+
+        <div class="limits">
+          <h5>🔍 この開発から得た学び</h5>
+          <ul>
+            <li><b>分担の設計そのものが技術課題である</b>と実感しました。「誰が何をできるか」を前提に作業境界を引いたことが、期限内の完成に直結しています。</li>
+            <li><b>統合は最後にまとめてやると破綻する。</b>個々の機能が動いても結合に時間がかかることを体験し、以降は早い段階から統合を回すようにしています。</li>
+          </ul>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ===== Slime Invasion 3D ===== -->
+    <article class="project-card theme-rust">
+      <div class="project-header">
+        <div class="headline">
+          <span class="project-type">個人開発 ／ 自作エンジン</span>
+          <h3>👾 Slime Invasion 3D — C++ / DirectX 11 製 3Dシューティング</h3>
+          <p class="pitch">
+            ゲームエンジンを使わず、C++ と DirectX 11 だけで実装した3Dシューティング。
+            Unity が内部で行っている処理を自分の手で再現することが目的でした。
+          </p>
+          <div class="tags">
+            <span class="tag">C++</span><span class="tag">DirectX 11</span><span class="tag">HLSL</span>
+            <span class="tag">Assimp</span><span class="tag">DirectXTex</span>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a class="btn btn-primary" href="https://github.com/MikhailRouG/Slime-Invasion-3D-VS" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-body">
+
+        <div class="role-line">
+          <b>担当：</b>設計・実装すべて（個人開発）　<b>期間：</b>約6ヶ月
+        </div>
+
+        <div class="media">
+          <img src="MikhailPavlov_2_files/597951268-97f4a34c-63e9-4be2-9031-ad9f2c076fd4.gif" alt="Slime Invasion 3D のゲームプレイ" onerror="this.style.display='none'">
+        </div>
+
+        <h4>🎯 取り組んだこと</h4>
+
+        <div class="case">
+          <span class="label">CASE 01</span>
+          <h5>描画パイプラインとスキニングを自前で組む</h5>
+          <dl>
+            <dt>課題</dt>
+            <dd>エンジンがない状態では、頂点データを画面に出すまでに必要なリソース管理・状態設定をすべて自分で用意する必要がある。ボーンアニメーションも既製のシステムなしで動かさなければならない。</dd>
+            <dt>アプローチ</dt>
+            <dd>デバイス／スワップチェーンの初期化から、頂点・インデックス・定数バッファの生成と更新、入力レイアウト、深度ステンシル、シェーダーのコンパイルとバインドまでを実装。アニメーションは Assimp でボーン階層とウェイトを読み込み、ボーン行列を定数バッファへ送って頂点シェーダー側でスキニングを計算する方式にしました。</dd>
+            <dt>結果</dt>
+            <dd class="result">Unity の <code>Material</code> / <code>SetPass</code> / <code>SkinnedMeshRenderer</code> が内部で何をしているかを具体的に説明できるようになり、描画最適化を判断する根拠になっています。</dd>
+          </dl>
+        </div>
+
+        <h4>✅ そのほかの実装</h4>
+        <div class="feature-grid">
+          <div class="feature-item"><h5>💡 ライティング</h5><p>Phong 反射モデルのディフューズ・スペキュラ・ポイントライトを HLSL で実装。</p></div>
+          <div class="feature-item"><h5>💥 当たり判定</h5><p>AABB / 球体ベースの衝突判定を独自実装し、弾・プレイヤー・敵の交差を管理。</p></div>
+          <div class="feature-item"><h5>🌟 パーティクル</h5><p>ビルボードレンダリングによる着弾・爆発エフェクト。</p></div>
+          <div class="feature-item"><h5>👾 敵の生成とAI</h5><p>ウェーブ形式でスライムを生成し、追跡・移動させるロジックを C++ で実装。</p></div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title"><span>Skills</span>技術スキル</h2>
+    <div class="divider"></div>
+    <p class="section-lead">根拠は上の制作物にあります。ここでは何をどの深さで扱えるかだけを整理しています。</p>
+
+    <div class="tier tier-core">
+      <div class="tier-name">Core<small>設計判断まで自分で行える</small></div>
+      <div class="chips">
+        <span class="chip">C#</span><span class="chip">Unity 6 / URP</span>
+        <span class="chip">Mirror（サーバー権威型設計）</span>
+        <span class="chip">描画最適化・プロファイリング</span>
+        <span class="chip">ドメインロジック分離・ユニットテスト</span>
+        <span class="chip">ScriptableObject データ設計</span>
+      </div>
+    </div>
+
+    <div class="tier tier-add">
+      <div class="tier-name">Additional<small>作品の中で実装した</small></div>
+      <div class="chips">
+        <span class="chip">C++ / DirectX 11 / HLSL</span>
+        <span class="chip">Zenject（DI）</span>
+        <span class="chip">New Input System</span>
+        <span class="chip">Cinemachine</span>
+        <span class="chip">uGUI / TextMesh Pro</span>
+        <span class="chip">エディタ拡張</span>
+        <span class="chip">Git / プルリクエスト運用</span>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-name">Familiar<small>基礎を習得済み・実務投入はこれから</small></div>
+      <div class="chips">
+        <span class="chip">Unity ECS / DOTS</span><span class="chip">SQL / SQLite</span>
+        <span class="chip">Assimp</span><span class="chip">Blender</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATUS ============ -->
+<section id="status">
+  <div class="container">
+    <h2 class="section-title"><span>Status</span>現在の取り組み</h2>
+    <div class="divider"></div>
+    <p class="section-lead">できていること／これからやることを、状態つきで公開しています。</p>
+
+    <ul class="status-list">
+      <li><span class="st st-done">完了</span><span>ドメインロジックの Unity 非依存アセンブリへの分離とユニットテスト導入（インベントリ）</span></li>
+      <li><span class="st st-done">完了</span><span>テクスチャ統合・メッシュ結合・GPUインスタンシングによる描画最適化（Draw Call −69%）</span></li>
+      <li><span class="st st-next">次</span><span>GitHub Actions（GameCI）でユニットテストの自動実行とビルドを回す</span></li>
+      <li><span class="st st-next">次</span><span>Memory Profiler による最適化前後のメモリ計測と、計測条件の公開</span></li>
+      <li><span class="st st-next">次</span><span>売買処理の <code>ShopService</code> 切り出しとテスト追加／<code>ItemDatabase</code> の DI 移行</span></li>
+      <li><span class="st st-next">次</span><span>セーブ・ロードの実装と、再接続時の状態復元</span></li>
+      <li><span class="st st-learn">学習中</span><span>Unity ECS / DOTS — 大量オブジェクト処理での適用を検討中</span></li>
+    </ul>
+
+    <dl class="history">
+      <dt>2025年4月</dt><dd>HAL東京 ゲームプログラム学科 入学（昼間部2年制課程）。日本語による授業でゲームプログラミング・C++・データベースを履修。</dd>
+      <dt>2025年</dt><dd>Slime Invasion 3D（C++ / DirectX 11）完成。</dd>
+      <dt>2025〜2026年</dt><dd>Make-a-Farm（Unity 6 / Mirror）開発。</dd>
+      <dt>2026年</dt><dd>Tetris Shooter（ゲームジャム・4名チーム）。</dd>
+      <dt>2027年3月</dt><dd>卒業見込 ／ 2027年4月 就業開始可能。在学中のインターンシップにも参加したいと考えています。</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ ENGLISH ============ -->
+<section id="english">
+  <div class="container">
+    <h2 class="section-title"><span>English</span>English Summary</h2>
+    <div class="divider"></div>
+
+    <div class="en-body" lang="en">
+      <p>
+        <strong>Mikhail Pavlov</strong> — game programmer graduating March 2027 from HAL Tokyo (Game Programming),
+        looking for a Unity client engineer role in Japan. Japanese: business-level (studies conducted in Japanese);
+        Russian: native; English: professional.
+      </p>
+      <p>Three things I'd want you to check in the code rather than take my word for:</p>
+      <ul>
+        <li>A Unity 6 / Mirror farming game where every gameplay state change goes through server-side <code>[Command]</code> handlers — Host/Client scope, no dedicated server or reconnection yet.</li>
+        <li>Inventory rules extracted into a Unity-independent assembly behind interfaces, so they can be unit-tested without opening the Editor.</li>
+        <li>A 3D shooter written from scratch in C++ / DirectX 11 — render pipeline, HLSL lighting, GPU skinning, collision.</li>
+      </ul>
+      <p>All three repositories are public: <a href="https://github.com/mikhailroug" target="_blank" rel="noopener">github.com/mikhailroug</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title"><span>Get in touch</span>連絡先</h2>
+    <div class="divider"></div>
+
+    <p class="contact-facts">
+      2027年3月 卒業見込（2027年卒）／ 2027年4月 就業開始可能 ／ 在留資格：留学 ／ 日本語：ビジネスレベル
+    </p>
+
+    <p class="contact-text">
+      日本のゲーム会社で Unity クライアントエンジニアとして働くことを目指しています。
+      新卒採用のほか、在学中のインターンシップも歓迎です。コードについてのご質問にはいつでもお答えします。
+    </p>
+
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:pavlovmikhailn1@gmail.com">✉️ pavlovmikhailn1@gmail.com</a>
+      <a class="contact-link" href="https://github.com/mikhailroug" target="_blank" rel="noopener">🐙 github.com/mikhailroug</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Mikhail Pavlov — Game Programmer Portfolio（Unity / C# / C++ / DirectX 11）</p>
+</footer>
+
+<script>
+(function () {
+  var nav = document.getElementById('site-nav');
+  var btn = document.getElementById('nav-toggle');
+  var menu = document.getElementById('nav-menu');
+
+  function setOpen(open) {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', function () {
+    setOpen(!nav.classList.contains('open'));
+  });
+
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') setOpen(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      setOpen(false);
+      btn.focus();
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 760) setOpen(false);
+  });
+})();
+</script>
+
+</body>
+</html>
