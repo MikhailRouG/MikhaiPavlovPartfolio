@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="ja" class=" idc0_343 feiqwghgs"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer-when-downgrade">
@@ -425,29 +425,15 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
 
 <main id="main">
 
-<!-- ============ INTRO ============ -->
-<section id="intro">
-  <div class="container">
-    <p>
-      HAL東京 ゲームプログラム学科（2027年3月卒業見込）でゲームプログラミングを学んでいます。
-      「動くものを作る」ところで止めず、<strong>数値で測ってから直す</strong>ことと、
-      <strong>あとから壊れていないと確認できる形に設計する</strong>ことを大切にしています。
-    </p>
-    <p>
-      Unity では Mirror を使ったマルチプレイヤーのゲームプレイ設計と描画最適化に取り組み、
-      その手前で C++ / DirectX 11 を使ってレンダリングをゼロから書いた経験があります。
-      エンジンの内側で起きていることを踏まえた上で Unity を扱えることが強みです。
-      3作品すべてソースコードを公開しているので、判断の根拠まで見ていただけます。
-    </p>
-  </div>
-</section>
+
+
 
 <!-- ============ PROJECTS ============ -->
 <section id="projects">
   <div class="container">
     <h2 class="section-title"><span>Projects</span>制作物</h2>
     <div class="divider"></div>
-    <p class="section-lead">「課題 → アプローチ → 結果」の形で記載し、該当するソースコードに直接リンクしています。</p>
+    
 
     <!-- ===== Make-a-Farm ===== -->
     <article class="project-card">
@@ -480,14 +466,14 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
 
         <div class="video-frame">
           <a href="https://www.youtube.com/watch?v=x4QJLfxhtf4" target="_blank" rel="noopener" aria-label="Make-a-Farm のプレイ動画を YouTube で見る">
-            <img src="MikhailPavlov_2_files/maxresdefault.jpg" alt="Make-a-Farm のプレイ動画サムネイル" onerror="this.style.display='none'">
+            <img src="index_files/maxresdefault_0egA_YQPW.jpg" alt="Make-a-Farm のプレイ動画サムネイル" onerror="this.style.display='none'">
             <span class="play"><svg viewBox="0 0 24 24" width="28" height="28" fill="#f4d35e" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span>
           </a>
         </div>
 
         <div class="media">
-          <img src="MikhailPavlov_2_files/597943950-34ff16b8-5f28-4ea2-88da-d515deb64e96.gif" alt="種を植えてから収穫するまでのゲームプレイ" onerror="this.style.display='none'">
-          <img src="MikhailPavlov_2_files/597430182-1919b6c8-896f-4ec1-bca1-e77a169cc2bb.gif" alt="インベントリとショップUIの操作" onerror="this.style.display='none'">
+          <img src="index_files/597943950-34ff16b8-5f28-4ea2-88da-d515deb64e96_0egA_YQPW.gif" alt="種を植えてから収穫するまでのゲームプレイ" onerror="this.style.display='none'">
+          <img src="index_files/597430182-1919b6c8-896f-4ec1-bca1-e77a169cc2bb_0egA_YQPW.gif" alt="インベントリとショップUIの操作" onerror="this.style.display='none'">
         </div>
 
         <h4>🎯 技術的な課題と、その解決</h4>
@@ -617,7 +603,7 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
         </div>
 
         <div class="media">
-          <img src="MikhailPavlov_2_files/600486647-3062ac83-c549-4910-81bc-64f94da976cf.gif" alt="Tetris Shooter のゲームプレイ" onerror="this.style.display='none'">
+          <img src="index_files/600486647-3062ac83-c549-4910-81bc-64f94da976cf_0egA_YQPW.gif" alt="Tetris Shooter のゲームプレイ" onerror="this.style.display='none'">
         </div>
 
         <h4>🎯 チーム開発における課題と、その解決</h4>
@@ -696,7 +682,7 @@ Mizuno         ─── オーディオ
         </div>
 
         <div class="media">
-          <img src="MikhailPavlov_2_files/597951268-97f4a34c-63e9-4be2-9031-ad9f2c076fd4.gif" alt="Slime Invasion 3D のゲームプレイ" onerror="this.style.display='none'">
+          <img src="index_files/597951268-97f4a34c-63e9-4be2-9031-ad9f2c076fd4_0egA_YQPW.gif" alt="Slime Invasion 3D のゲームプレイ" onerror="this.style.display='none'">
         </div>
 
         <h4>🎯 取り組んだこと</h4>
@@ -708,7 +694,8 @@ Mizuno         ─── オーディオ
             <dt>課題</dt>
             <dd>エンジンがない状態では、頂点データを画面に出すまでに必要なリソース管理・状態設定をすべて自分で用意する必要がある。ボーンアニメーションも既製のシステムなしで動かさなければならない。</dd>
             <dt>アプローチ</dt>
-            <dd>デバイス／スワップチェーンの初期化から、頂点・インデックス・定数バッファの生成と更新、入力レイアウト、深度ステンシル、シェーダーのコンパイルとバインドまでを実装。アニメーションは Assimp でボーン階層とウェイトを読み込み、ボーン行列を定数バッファへ送って頂点シェーダー側でスキニングを計算する方式にしました。</dd>
+            <dd>デバイス／スワップチェーンの初期化から、頂点・インデックス・定数バッファの生成と更新、入力レイアウト、深度ステンシル、シェーダーのコンパイルとバインドまでを実装。アニメーションは
+ Assimp でボーン階層とウェイトを読み込み、ボーン行列を定数バッファへ送って頂点シェーダー側でスキニングを計算する方式にしました。</dd>
             <dt>結果</dt>
             <dd class="result">Unity の <code>Material</code> / <code>SetPass</code> / <code>SkinnedMeshRenderer</code> が内部で何をしているかを具体的に説明できるようになり、描画最適化を判断する根拠になっています。</dd>
           </dl>
@@ -811,7 +798,9 @@ Mizuno         ─── オーディオ
       <p>Three things I'd want you to check in the code rather than take my word for:</p>
       <ul>
         <li>A Unity 6 / Mirror farming game where every gameplay state change goes through server-side <code>[Command]</code> handlers — Host/Client scope, no dedicated server or reconnection yet.</li>
-        <li>Inventory rules extracted into a Unity-independent assembly behind interfaces, so they can be unit-tested without opening the Editor.</li>
+        <li>Inventory rules extracted into a Unity-independent assembly 
+behind interfaces, so they can be unit-tested without opening the 
+Editor.</li>
         <li>A 3D shooter written from scratch in C++ / DirectX 11 — render pipeline, HLSL lighting, GPU skinning, collision.</li>
       </ul>
       <p>All three repositories are public: <a href="https://github.com/mikhailroug" target="_blank" rel="noopener">github.com/mikhailroug</a></p>
@@ -878,5 +867,6 @@ Mizuno         ─── オーディオ
 })();
 </script>
 
-</body>
-</html>
+
+
+</body></html>
