@@ -54,7 +54,7 @@
       "codeRepository": "https://github.com/MikhailRouG/Tetris-Shooter",
       "programmingLanguage": "C#",
       "runtimePlatform": "Unity 6 / URP",
-      "about": "4名のゲームジャムチーム。Unity側の基盤整備・Git運用・統合・VFXを担当。"
+      "about": "4名のゲームジャムチーム（プログラミング：Arai-Eito、企画：akitakann、サウンド：Mizuno）。Unity 実装・UI・最適化・エフェクト／グラフィックと、プロジェクト基盤・Git運用・統合を担当。"
     },
     {
       "@type": "SoftwareSourceCode",
@@ -202,6 +202,14 @@ section { padding:3.4rem 1.6rem; }
 .video-frame:hover .play { transform:translate(-50%,-50%) scale(1.08); }
 
 .limits { background:var(--green-tint); border:1px dashed var(--green-light); border-radius:var(--radius-sm); padding:.9rem 1.2rem; margin-top:1.2rem; font-size:.84rem; color:var(--ink-mid); }
+
+.team { list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-top:1.1rem; }
+.team li { display:grid; grid-template-columns:auto 1fr; gap:.2rem .7rem; align-items:baseline; background:var(--violet-soft); border:1px solid #d5c8ef; border-radius:var(--radius-sm); padding:.6rem .9rem; font-size:.84rem; color:var(--ink-mid); }
+.team b { color:var(--violet); white-space:nowrap; }
+.team li.me { grid-column:1 / -1; background:var(--violet); border-color:var(--violet); color:#efe8fb; }
+.team li.me b { color:var(--yellow); }
+.team-title { font-size:.88rem; color:var(--violet); margin-top:1.4rem; font-weight:700; }
+@media (max-width:760px) { .team { grid-template-columns:1fr; } .team li { grid-template-columns:auto 1fr; } }
 .limits b { color:var(--green-dark); }
 
 .theme-violet .project-header { background:linear-gradient(135deg,#2a1a52,var(--violet)); }
@@ -430,7 +438,7 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
       </div>
 
       <div class="project-body">
-        <div class="role-line"><b>担当：</b>Unity プロジェクト基盤・Git運用・統合作業・VFX／UIアニメーション　<b>チーム：</b>4名</div>
+        <div class="role-line"><b>担当：</b>Unity 実装・UI・最適化・エフェクト／グラフィック・プロジェクト基盤・Git運用・統合　<b>チーム：</b>4名</div>
 
         <div class="media">
           <img src="index_files/600486647-3062ac83-c549-4910-81bc-64f94da976cf_0egA_YQPW.gif" alt="Tetris Shooter のゲームプレイ" onerror="this.style.display='none'">
@@ -441,6 +449,14 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
           <p>Unity エディタの経験があるのは自分だけだったため、プロジェクト設定・シーン構成・<code>.gitignore</code>・ブランチ運用を自分が用意し、メンバーにはシーンではなくスクリプト単位で実装してもらう分担にしました。上がってきたコードのレビューと統合は自分が担当。
             <span class="result">→ 4名が並行作業してもシーン競合ゼロで完成。空いた時間でエフェクト・UI演出を作り込みました。</span></p>
         </div>
+
+        <h4 class="team-title">👥 チーム構成（4名）</h4>
+        <ul class="team">
+          <li class="me"><b>Mikhail（自分）</b><span>Unity 実装・UI・最適化・エフェクト／グラフィック・環境構築／統合</span></li>
+          <li><b>Arai-Eito</b><span>プログラミング</span></li>
+          <li><b>akitakann</b><span>企画・プランニング</span></li>
+          <li><b>Mizuno</b><span>サウンド／音楽</span></li>
+        </ul>
 
         <div class="limits">
           <b>学び：</b>分担の設計そのものが技術課題でした。統合を最後にまとめると破綻するため、以降は早い段階から統合を回すようにしています。
