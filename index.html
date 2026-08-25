@@ -188,6 +188,10 @@ section { padding:3.4rem 1.6rem; }
 .stat small { font-size:.74rem; color:var(--ink-soft); letter-spacing:.04em; }
 .note { font-size:.78rem; color:var(--ink-soft); margin-top:.6rem; }
 
+.steps { margin:.7rem 0 .2rem 1.2rem; font-size:.86rem; color:var(--ink-mid); display:grid; gap:.32rem; }
+.steps li::marker { color:var(--green-light); font-weight:700; }
+.steps code { font-size:.82em; }
+
 .media { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:1.3rem; }
 .media img { width:100%; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; }
 .video-frame { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius-sm); box-shadow:var(--shadow); margin-bottom:1rem; background:var(--green-dark); }
@@ -230,13 +234,6 @@ section { padding:3.4rem 1.6rem; }
 .tier-add .chip { background:var(--green-pale); color:var(--green-dark); border-color:var(--green-pale); }
 .next { max-width:100%; margin-top:1.6rem; background:var(--green-tint); border:1px solid var(--green-pale); border-radius:var(--radius-sm); padding:1rem 1.2rem; font-size:.85rem; color:var(--ink-mid); }
 .next b { color:var(--green-dark); }
-
-/* ---------- English ---------- */
-#english { background:var(--cream); border-top:1px solid var(--line); }
-#english .container { max-width:760px; }
-.en-body { font-family:system-ui,"Segoe UI",sans-serif; font-size:.9rem; color:var(--ink-mid); line-height:1.75; }
-.en-body ul { padding-left:1.2rem; margin:.6rem 0; }
-.en-body li { margin-bottom:.3rem; }
 
 /* ---------- Contact ---------- */
 #contact { background:linear-gradient(135deg,var(--green-dark),var(--green-mid)); color:var(--white); text-align:center; }
@@ -401,6 +398,26 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
           </p>
         </div>
 
+        <div class="case">
+          <h5>4. コードを書かずに植物を追加できるデータ設計</h5>
+          <p>全アイテムは抽象 ScriptableObject <code>ItemConfig</code>（Id・名前・価格・アイコン・モデル・スタック上限と、サーバー側で呼ばれる <code>UseServer()</code>）を基底に、<code>ItemSeed</code>（種）／<code>ItemFood</code>（収穫物）／<code>ItemCare</code>（水やり・肥料などの手入れ道具）へ派生させています。新しい作物を1種類増やす手順は次の通りで、C# には一切触れません。</p>
+          <ol class="steps">
+            <li><code>Create &gt; Item/Seed</code> で <code>ItemSeed</code> アセットを作成し、Id・名前・価格・アイコンを入力</li>
+            <li><code>Stages[]</code> に成長段階のプレハブを順に並べ、<code>TimePerStage</code> で1段階あたりの秒数を指定（<code>Plant</code> が最終段階まで自動で進めます）</li>
+            <li><code>HarvestItem[]</code> に収穫物を、<code>GhostObject</code> に設置プレビューを割り当て</li>
+            <li>世話が必要な作物なら <code>CareRequirement</code>（水やり／施肥／除草／剪定・必要な道具・初回までの秒数・再発間隔）を作って <code>Requirements[]</code> に追加</li>
+            <li><code>Tools &gt; Items &gt; Rebuild Database</code> を実行 — <code>AssetDatabase.FindAssets("t:ItemConfig")</code> で全アセットを集めて <code>ItemDatabase</code> を再生成</li>
+          </ol>
+          <p><span class="result">→ ネットワーク越しに送るのは <code>Id</code>（int）だけで、SO 本体はサーバーとクライアントが各自ローカルに持ちます。そのため作物を増やしてもネットワークコードもゲームプレイコードも変更が不要です。</span></p>
+          <p class="note">Id の入れ忘れ（新規アセットは 0）で別アイテムを上書きしないよう、DB 構築時に重複 Id を検出して該当アセットを指すエラーを出します。</p>
+          <p class="src">コード：
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Items/ItemConfig.cs" target="_blank" rel="noopener">ItemConfig.cs</a> ／
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Items/ItemSeed.cs" target="_blank" rel="noopener">ItemSeed.cs</a> ／
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/FarmScripts/Care/CareRequirement.cs" target="_blank" rel="noopener">CareRequirement.cs</a> ／
+            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Items/Editor/ItemDatabaseBuilder.cs" target="_blank" rel="noopener">ItemDatabaseBuilder.cs</a>
+          </p>
+        </div>
+
         <div class="limits">
           <b>🔍 現時点の範囲：</b>Host/Client 構成まで。専用サーバー・再接続・セーブ／ロードは未実装で、テスト対象もインベントリのみです。次はセーブ／ロードと <code>ShopService</code> の切り出しに取り組みます。
         </div>
@@ -517,24 +534,6 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
     </div>
 
     <p class="next"><b>次に取り組むこと：</b>GitHub Actions（GameCI）でのテスト自動実行 ／ セーブ・ロードと再接続時の状態復元 ／ <code>ShopService</code> の切り出しとテスト拡張 ／ Unity ECS の適用検討。</p>
-  </div>
-</section>
-
-<!-- ============ ENGLISH ============ -->
-<section id="english">
-  <div class="container">
-    <h2 class="section-title"><span>English</span>English Summary</h2>
-    <div class="divider"></div>
-    <div class="en-body" lang="en">
-      <p><strong>Mikhail Pavlov</strong> — game programmer graduating March 2027 from HAL Tokyo (Game Programming), looking for a Unity client engineer role in Japan. Japanese: business level; Russian: native; English: professional.</p>
-      <ul>
-        <li>Unity 6 / Mirror farming game where every gameplay state change goes through server-side <code>[Command]</code> handlers (Host/Client scope).</li>
-        <li>Draw calls cut 286 → 88 (−69%) via texture atlasing, mesh combining and GPU instancing.</li>
-        <li>Inventory rules extracted into a Unity-independent assembly, unit-tested without opening the Editor.</li>
-        <li>A 3D shooter written from scratch in C++ / DirectX 11 — render pipeline, HLSL lighting, GPU skinning, collision.</li>
-      </ul>
-      <p>All repositories are public: <a href="https://github.com/mikhailroug" target="_blank" rel="noopener">github.com/mikhailroug</a></p>
-    </div>
   </div>
 </section>
 
