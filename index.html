@@ -188,9 +188,6 @@ section { padding:3.4rem 1.6rem; }
 .stat small { font-size:.74rem; color:var(--ink-soft); letter-spacing:.04em; }
 .note { font-size:.78rem; color:var(--ink-soft); margin-top:.6rem; }
 
-.steps { margin:.7rem 0 .2rem 1.2rem; font-size:.86rem; color:var(--ink-mid); display:grid; gap:.32rem; }
-.steps li::marker { color:var(--green-light); font-weight:700; }
-.steps code { font-size:.82em; }
 
 .media { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:1.3rem; }
 .media img { width:100%; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; }
@@ -399,19 +396,10 @@ footer { background:#0e2119; color:var(--green-pale); text-align:center; padding
         </div>
 
         <div class="case">
-          <h5>4. コードを書かずに植物を追加できるデータ設計</h5>
-          <p>全アイテムは抽象 ScriptableObject <code>ItemConfig</code>（Id・名前・価格・アイコン・モデル・スタック上限と、サーバー側で呼ばれる <code>UseServer()</code>）を基底に、<code>ItemSeed</code>（種）／<code>ItemFood</code>（収穫物）／<code>ItemCare</code>（水やり・肥料などの手入れ道具）へ派生させています。新しい作物を1種類増やす手順は次の通りで、C# には一切触れません。</p>
-          <ol class="steps">
-            <li><code>Create &gt; Item/Seed</code> で <code>ItemSeed</code> アセットを作成し、Id・名前・価格・アイコンを入力</li>
-            <li><code>Stages[]</code> に成長段階のプレハブを順に並べ、<code>TimePerStage</code> で1段階あたりの秒数を指定（<code>Plant</code> が最終段階まで自動で進めます）</li>
-            <li><code>HarvestItem[]</code> に収穫物を、<code>GhostObject</code> に設置プレビューを割り当て</li>
-            <li>世話が必要な作物なら <code>CareRequirement</code>（水やり／施肥／除草／剪定・必要な道具・初回までの秒数・再発間隔）を作って <code>Requirements[]</code> に追加</li>
-            <li><code>Tools &gt; Items &gt; Rebuild Database</code> を実行 — <code>AssetDatabase.FindAssets("t:ItemConfig")</code> で全アセットを集めて <code>ItemDatabase</code> を再生成</li>
-          </ol>
-          <p><span class="result">→ ネットワーク越しに送るのは <code>Id</code>（int）だけで、SO 本体はサーバーとクライアントが各自ローカルに持ちます。そのため作物を増やしてもネットワークコードもゲームプレイコードも変更が不要です。</span></p>
-          <p class="note">Id の入れ忘れ（新規アセットは 0）で別アイテムを上書きしないよう、DB 構築時に重複 Id を検出して該当アセットを指すエラーを出します。</p>
+          <h5>4. コードを書かずに作物を追加できるデータ設計</h5>
+          <p>全アイテムは抽象 ScriptableObject <code>ItemConfig</code> を基底に <code>ItemSeed</code>（種）／<code>ItemFood</code>（収穫物）／<code>ItemCare</code>（手入れ道具）へ派生。作物を1種類増やす作業は <code>ItemSeed</code> アセットを作り、<code>Stages[]</code> に成長段階のプレハブ、<code>TimePerStage</code> に段階あたりの秒数、<code>HarvestItem[]</code> に収穫物、必要なら <code>CareRequirement</code>（水やり／施肥／除草／剪定）を差して <code>Rebuild Database</code> を押すだけで、C# には触れません。
+            <span class="result">→ ネットワーク越しに送るのは <code>Id</code>（int）だけ。SO 本体はサーバーとクライアントが各自ローカルに持つため、作物を増やしてもネットワークコードは変更不要です。</span></p>
           <p class="src">コード：
-            <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Items/ItemConfig.cs" target="_blank" rel="noopener">ItemConfig.cs</a> ／
             <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Items/ItemSeed.cs" target="_blank" rel="noopener">ItemSeed.cs</a> ／
             <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/FarmScripts/Care/CareRequirement.cs" target="_blank" rel="noopener">CareRequirement.cs</a> ／
             <a href="https://github.com/MikhailRouG/Make-a-Farm-Unity-Project/blob/main/Assets/Scripts/Gameplay/Items/Editor/ItemDatabaseBuilder.cs" target="_blank" rel="noopener">ItemDatabaseBuilder.cs</a>
