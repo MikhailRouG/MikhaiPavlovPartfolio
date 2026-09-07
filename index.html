@@ -188,6 +188,11 @@ section { padding:3.4rem 1.6rem; }
 .stat small { font-size:.74rem; color:var(--ink-soft); letter-spacing:.04em; }
 .note { font-size:.78rem; color:var(--ink-soft); margin-top:.6rem; }
 
+/* Keep these small blocks intact when the page is paginated (print / PDF export) */
+.case, .limits, .team li, .stat, .role-line, .video-frame, .project-header, .section-title {
+  break-inside:avoid; page-break-inside:avoid;
+}
+
 
 .media { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:1.3rem; }
 .media img { width:100%; min-height:60px; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); display:block; background:var(--green-tint); }
